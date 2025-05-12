@@ -41,6 +41,8 @@
       padding: 12px;
       z-index: 1;
       transition: all 0.2s ease-in;
+      width: 236px;
+      height: 236px;
       div {
         height: 100%;
         border: 3px solid #2459ab;
@@ -69,6 +71,9 @@
   position: relative;
   align-items: center;
   padding: 15px;
+  width: 236px;
+  height: 236px;
+  flex-shrink: 0;
   // &.active {
   //   padding: 12px;
   //   a {

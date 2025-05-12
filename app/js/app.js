@@ -16,7 +16,7 @@ import "./modules/KeyboardModule";
   routes["store"] = {
     url: "#/",
     templateUrl: "templates/home.html",
-    viewModel: vm["storeVM"],
+    viewModel: vm["homeVM"],
   };
 
   routes["categoryDetail"] = {

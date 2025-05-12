@@ -1,11 +1,12 @@
 <div id="home" class="page home-page">
   <div class="video-background">
     <div class="flowplayer-embed-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width:100%;">
-      <iframe webkitAllowFullScreen mozallowfullscreen allowfullscreen src="http://103.153.72.195:8080/video/HITEC_Scandic_Video_No_Sound.mp4" title="0" byline="0" portrait="0" frameborder="0" allow="autoplay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+      <video muted autoplay loop webkitAllowFullScreen mozallowfullscreen allowfullscreen src="http://103.153.72.195:8080/video/HITEC_Scandic_Video_No_Sound.mp4" title="0" byline="0" portrait="0" frameborder="0" allow="autoplay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></video>
     </div>
+    <div class="overlay" style="background: url(assets/images/icons/shadow.png);"></div>
   </div>
   <div class="menu-container">
-    <div class="navigate back">
+    <div class="navigate back" id="btnArrowLeft">
       <svg
         id="btn_arrow_left"
         xmlns="http://www.w3.org/2000/svg"
@@ -20,7 +21,7 @@
         />
       </svg>
     </div>
-    <div class="navigate next">
+    <div class="navigate next" id="btnArrowRight">
       <svg
         id="btn_arrow_right"
         xmlns="http://www.w3.org/2000/svg"
@@ -36,10 +37,10 @@
       </svg>
     </div>
     <div class="menu-wrapper">
-      <div class="menu-cursor" style="width: 236px; height: 236px; transform: translate(0px, 0px);">
+      <div class="menu-cursor" id="menuCursor" style="transform: translate(0px, 0px);">
         <div>&nbsp;</div>
       </div>
-      <div class="menu-scroller" style="transform: translateX(0px);">
+      <div class="menu-scroller" id="menuScroller" style="transform: translateX(0px);">
         <div class="menu-item" style="flex-basis: 236px; height: 236px;">
           <div class="a">
             <div class="icon"><svg id="icon-tv" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 130 130">
