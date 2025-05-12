@@ -1,0 +1,32 @@
+/* By M Team */
+
+/* Core variables */
+@import "base/vars";
+
+/* CSS Reset */
+@import "base/reset";
+
+/* CSS print */
+@import "base/print";
+
+/* Fonts */
+@import "base/fonts";
+
+/* Mixins, helpers and functions */
+@import "base/mixins";
+
+/* Vendor */
+
+/* Layout */
+@import "layout/layout";
+@import "root";
+
+/* Components */
+@import "layout/header";
+@import "layout/footer";
+
+/* Demo styles */
+@import "sections/video_background";
+@import "sections/right_bottom_buttons";
+@import "sections/welcome";
+@import "sections/menu_vertical";

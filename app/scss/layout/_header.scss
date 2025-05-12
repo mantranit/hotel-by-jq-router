@@ -1,0 +1,60 @@
+@keyframes tiktak {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  transition: all 0.2s ease-in;
+  .logo {
+    padding: 18px 28px;
+    img {
+      height: 48px;
+      width: auto;
+    }
+  }
+  .generalInfo {
+    display: flex;
+    align-items: center;
+    font-size: 23px;
+    padding-right: 28px;
+    margin-top: -16px;
+    > div {
+      margin-left: 20px;
+    }
+    sup {
+      line-height: 1;
+    }
+    .clock-area {
+      display: flex;
+      align-items: center;
+      .icon {
+        width: 24px;
+        transform: translateY(3px);
+        margin-right: 5px;
+      }
+      .separate {
+        animation: tiktak 500ms ease-in alternate infinite;
+      }
+    }
+  }
+  .wakeup-call {
+    position: absolute;
+    right: 26px;
+    top: 60px;
+    font-size: 28px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+}

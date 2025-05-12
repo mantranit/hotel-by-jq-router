@@ -1,0 +1,38 @@
+.right-bottom-buttons-wrapper {
+  position: absolute;
+  right: 30px;
+  bottom: 22px;
+  .home-page & {
+    bottom: 270px;
+    opacity: 0;
+    animation: slideUp 0.3s ease-in forwards;
+    animation-delay: 0.2s;
+  }
+  .welcome-page & {
+    bottom: 60px;
+    animation: fadeIn 0.3s ease-in 1;
+  }
+  .right-bottom-buttons {
+    display: flex;
+  }
+  button {
+    color: white;
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    .icon {
+      display: block;
+      width: 28px;
+      height: 24px;
+      border-radius: 6px;
+      margin-right: 8px;
+    }
+    + button {
+      margin-left: 30px;
+    }
+  }
+}

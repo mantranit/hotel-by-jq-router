@@ -1,0 +1,88 @@
+#root {
+  width: 1280px;
+  height: 720px;
+}
+#app,
+.site-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.page {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 1);
+}
+
+.cover {
+  background: #000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 110;
+  animation: fadeOut 0.3s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.site-line {
+  width: 100%;
+  height: 40px;
+  margin: 0 auto;
+  position: relative;
+  font-size: 20px;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 19px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  .line-name {
+    position: absolute;
+    top: 2px;
+    left: 0;
+    padding: 0 15px 0 0;
+    background-color: black;
+    color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+@keyframes tv_cur_live {
+  from {
+  }
+  50% {
+    border-color: rgba(255, 255, 255, 0.7);
+  }
+}
