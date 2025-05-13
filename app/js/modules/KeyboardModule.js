@@ -66,6 +66,10 @@ $(function() {
             window.homeKeyboard.cursor - 1,
             0
           );
+        } else if (keyCode === keyboard.ENTER) {
+          const currentItem = window.menu[window.homeKeyboard.currentIndex];
+          console.log(currentItem.path, "#" + currentItem.path);
+          window.location.href = "#" + currentItem.path;
         }
         if (window.homeKeyboard.cursor === window.homeKeyboard.currentIndex) {
           $("#btnArrowLeft").addClass("disabled");

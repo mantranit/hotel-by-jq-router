@@ -19,6 +19,12 @@ import "./modules/KeyboardModule";
     viewModel: vm["homeVM"],
   };
 
+  routes["television"] = {
+    url: "#/television",
+    templateUrl: "templates/television.html",
+    viewModel: vm["televisionVM"],
+  };
+
   routes["categoryDetail"] = {
     url: "#/categories/:categoryId",
     templateUrl: "templates/category.html",
