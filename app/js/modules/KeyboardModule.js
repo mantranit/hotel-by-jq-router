@@ -26,12 +26,25 @@ $(function() {
     EXIT: [10000], // Exit
   };
 
+  var checkKey = function(key, keyCode) {
+    for (var i = 0; i < key.length; i++) {
+      if (key[i] === keyCode) {
+        return true;
+      }
+    }
+    return false;
+  };
+
   var KeyboardModule = {
     init: function() {
       this.bindEvents();
       window.homeKeyboard = {
         currentIndex: 0,
         cursor: 0,
+      };
+      window.televisionKeyboard = {
+        cursorX: 0,
+        cursorY: 0,
       };
     },
 
@@ -51,7 +64,7 @@ $(function() {
         if (keyCode === keyboard.RIGHT) {
           window.homeKeyboard.currentIndex = Math.min(
             window.homeKeyboard.currentIndex + 1,
-            16
+            window.menu.length - 1
           );
           window.homeKeyboard.cursor = Math.min(
             window.homeKeyboard.cursor + 1,
@@ -92,6 +105,105 @@ $(function() {
             window.homeKeyboard.currentIndex - window.homeKeyboard.cursor
           ) * 236}px)`,
         });
+      }
+      if ($("#television").is(":visible")) {
+        var itemInRow = 4;
+        window.listFilter = window.channels;
+        if (keyCode === keyboard.RIGHT) {
+          if (window.televisionKeyboard.cursorX === itemInRow - 1) {
+            if (
+              window.listFilter[
+                (window.televisionKeyboard.cursorY + 1) * itemInRow
+              ]
+            ) {
+              window.televisionKeyboard.cursorX = 0;
+              window.televisionKeyboard.cursorY++;
+            }
+          } else {
+            var nextCursorX = Math.min(
+              window.televisionKeyboard.cursorX + 1,
+              itemInRow - 1
+            );
+            if (
+              window.listFilter[
+                nextCursorX + window.televisionKeyboard.cursorY * itemInRow
+              ]
+            ) {
+              window.televisionKeyboard.cursorX = nextCursorX;
+            }
+          }
+        } else if (keyCode === keyboard.LEFT) {
+          if (window.televisionKeyboard.cursorX === 0) {
+            if (
+              window.listFilter[
+                itemInRow -
+                  1 +
+                  (window.televisionKeyboard.cursorY - 1) * itemInRow
+              ]
+            ) {
+              window.televisionKeyboard.cursorX = itemInRow - 1;
+              window.televisionKeyboard.cursorY--;
+            }
+          } else {
+            window.televisionKeyboard.cursorX = Math.max(
+              window.televisionKeyboard.cursorX - 1,
+              0
+            );
+          }
+        } else if (keyCode === keyboard.TOP) {
+          window.televisionKeyboard.cursorY = Math.max(
+            window.televisionKeyboard.cursorY - 1,
+            0
+          );
+        } else if (keyCode === keyboard.BOTTOM) {
+          var nextCursorY = Math.min(
+            window.televisionKeyboard.cursorY + 1,
+            Math.ceil(window.listFilter.length / itemInRow) - 1
+          );
+          if (
+            !window.listFilter[
+              window.televisionKeyboard.cursorX + nextCursorY * itemInRow
+            ]
+          ) {
+            window.televisionKeyboard.cursorX =
+              (window.listFilter.length % itemInRow) - 1;
+          }
+          window.televisionKeyboard.cursorY = nextCursorY;
+        } else if (keyCode === keyboard.ENTER) {
+        } else if (checkKey(keyboard.BACK, keyCode)) {
+          window.location.href = "#/";
+        }
+
+        $("#televisionCursor").css({
+          transform: `translate(${window.televisionKeyboard.cursorX *
+            (152 + 36)}px, ${window.televisionKeyboard.cursorY *
+            (123 + 36)}px)`,
+        });
+
+        var televisionOuter = $("#televisionContent").get(0);
+        var televisionInner = $("#televisionList").get(0);
+        var children = televisionInner.children;
+        if (
+          children[
+            window.televisionKeyboard.cursorX +
+              window.televisionKeyboard.cursorY * itemInRow
+          ]
+        ) {
+          var child =
+            children[
+              window.televisionKeyboard.cursorX +
+                window.televisionKeyboard.cursorY * itemInRow
+            ];
+          var top = child.offsetTop;
+          var bottom = top + child.clientHeight;
+          var outerTop = televisionOuter.scrollTop;
+          var outerBottom = outerTop + televisionOuter.clientHeight;
+          if (top < outerTop) {
+            televisionOuter.scrollTop = top;
+          } else if (bottom > outerBottom) {
+            televisionOuter.scrollTop = bottom - televisionOuter.clientHeight;
+          }
+        }
       }
     },
   };
