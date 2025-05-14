@@ -177,6 +177,9 @@
         font-size: inherit;
         color: white;
       }
+      .icon {
+        display: inline-block;
+      }
     }
     &.active {
       border: 3px solid #2459ab;
@@ -191,11 +194,14 @@
       justify-content: space-between;
       gap: 10px;
     }
-    .icon svg {
-      width: 20px;
-      height: 20px;
-      fill: white;
-      margin-right: 10px;
+    .icon {
+      display: none;
+      svg {
+        width: 20px;
+        height: 20px;
+        fill: white;
+        margin-right: 10px;
+      }
     }
   }
 }
@@ -243,6 +249,9 @@
     .channel-category {
       padding-bottom: 20px;
     }
+    .television-control {
+      display: block;
+    }
   }
   .channel-title {
     margin-top: 10px;
@@ -259,6 +268,7 @@
   }
   .television-control {
     margin-top: 20px;
+    display: none;
     .television-control-content {
       display: flex;
       justify-content: space-between;

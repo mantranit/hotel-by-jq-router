@@ -1,6 +1,5 @@
 var vm = {};
 (function() {
-  window.channelFilter = [];
   window.filteredChannels = window.channels = [
     // {
     //   id: "SEASHELLS TV",
@@ -782,79 +781,9 @@ var vm = {};
   };
 
   vm.televisionVM = function(route, param) {
-    $("#televisionTitle").html(
-      `<strong>` +
-        i18njs.get("TV Channels") +
-        `</strong> <span>` +
-        window.filteredChannels.length +
-        ` of ` +
-        window.channels.length +
-        `</span>`
-    );
-    if (window.channelFilter.length > 0) {
-      $("#televisionFilter").html(window.channelFilter.join(", "));
-    } else {
-      $("#televisionFilter").html(i18njs.get("Any category"));
-    }
-
-    try {
-      var activeChannel = window.filteredChannels[0];
-      var video,
-        url = "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
-        // url = `${location.protocol}//${activeChannel.server}/dash/master-${activeChannel.ipAddress}/live.mpd`;
-        video = document.getElementById("iptv-video");
-      window.player = dashjs.MediaPlayer().create();
-      window.player.initialize();
-      window.player.attachView(video);
-      window.player.setAutoPlay(true);
-      window.player.attachSource(url);
-
-      $("#channelTitle").html(activeChannel.name);
-      $("#channelCategory").html(activeChannel.category.join(", "));
-    } catch (e) {
-      console.error("Error initializing video player:", e);
-    }
-
-    $("#televisionList").empty();
-    window.filteredChannels.forEach(function(item, index) {
-      $("#televisionList").append(
-        `<div class="television-item active">
-          <div class="television-item-inner">
-            <img alt="" width="152" height="86" src="` +
-          item.image +
-          `">
-          </div>
-          <p class="title">` +
-          item.name +
-          `</p>
-        </div>`
-      );
-    });
-
-    $("#filterChannels .filter-channels-inner").html(
-      `<div class="filter-channels-item active">
-              <div>
-                <div>Any</div>
-                <div class="count">` +
-        window.channels.length +
-        `</div>
-              </div>
-            </div>`
-    );
-    window.channelCategories.forEach(function(item, index) {
-      $("#filterChannels .filter-channels-inner").append(
-        `<div class="filter-channels-item">
-              <div>
-                <div>` +
-          item +
-          `</div>
-                <div class="count">` +
-          window.channelCategoriesCount[item] +
-          `</div>
-              </div>
-            </div>`
-      );
-    });
+    window.TelevisionModule.initIPTVPlayer();
+    window.TelevisionModule.renderChannels();
+    window.TelevisionModule.renderCategories();
   };
 
   vm.storeVM = function(route, param) {

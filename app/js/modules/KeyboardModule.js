@@ -1,5 +1,5 @@
 $(function() {
-  var keyboard = {
+  window.keyboard = {
     LEFT: 37,
     TOP: 38,
     RIGHT: 39,
@@ -26,15 +26,6 @@ $(function() {
     EXIT: [10000], // Exit
   };
 
-  var checkKey = function(key, keyCode) {
-    for (var i = 0; i < key.length; i++) {
-      if (key[i] === keyCode) {
-        return true;
-      }
-    }
-    return false;
-  };
-
   var KeyboardModule = {
     init: function() {
       this.bindEvents();
@@ -42,21 +33,13 @@ $(function() {
         currentIndex: 0,
         cursor: 0,
       };
-      window.televisionKeyboard = {
-        cursorX: 0,
-        cursorY: 0,
-      };
-      window.televisionFilterKeyboard = {
-        cursor: 0,
-      };
     },
 
     bindEvents: function() {
-      $(document).on("keydown", this.handleKeyDown);
+      document.addEventListener("keydown", this.handleKeyDown.bind(this));
     },
 
     handleKeyDown: function(event) {
-      event.preventDefault();
       const keyCode = event.keyCode || event.which;
       if ($("#welcome").is(":visible")) {
         if (keyCode === keyboard.ENTER) {
@@ -64,7 +47,7 @@ $(function() {
         }
       }
       if ($("#home").is(":visible")) {
-        if (keyCode === keyboard.RIGHT) {
+        if (keyCode === window.keyboard.RIGHT) {
           window.homeKeyboard.currentIndex = Math.min(
             window.homeKeyboard.currentIndex + 1,
             window.menu.length - 1
@@ -73,7 +56,7 @@ $(function() {
             window.homeKeyboard.cursor + 1,
             4
           );
-        } else if (keyCode === keyboard.LEFT) {
+        } else if (keyCode === window.keyboard.LEFT) {
           window.homeKeyboard.currentIndex = Math.max(
             window.homeKeyboard.currentIndex - 1,
             0
@@ -82,7 +65,7 @@ $(function() {
             window.homeKeyboard.cursor - 1,
             0
           );
-        } else if (keyCode === keyboard.ENTER) {
+        } else if (keyCode === window.keyboard.ENTER) {
           const currentItem = window.menu[window.homeKeyboard.currentIndex];
           console.log(currentItem.path, "#" + currentItem.path);
           window.location.href = "#" + currentItem.path;
@@ -109,172 +92,10 @@ $(function() {
           ) * 236}px)`,
         });
       }
-      if ($("#television").is(":visible")) {
-        if ($("#filterChannels").is(":visible")) {
-          if (keyCode === keyboard.TOP) {
-            window.televisionFilterKeyboard.cursor = Math.max(
-              window.televisionFilterKeyboard.cursor - 1,
-              0
-            );
-          } else if (keyCode === keyboard.BOTTOM) {
-            window.televisionFilterKeyboard.cursor = Math.min(
-              window.televisionFilterKeyboard.cursor + 1,
-              window.channelsCategories.length - 1
-            );
-          } else if (keyCode === keyboard.ENTER) {
-            var filter = $("#filterChannels").val();
-            console.log("Filter: ", filter);
-            window.filteredChannels = window.channels.filter(function(channel) {
-              return channel.name.toLowerCase().includes(filter.toLowerCase());
-            });
-            window.televisionKeyboard.cursorX = 0;
-            window.televisionKeyboard.cursorY = 0;
-          } else if (
-            checkKey(keyboard.BACK, keyCode) ||
-            checkKey(keyboard.BUTTON_YELLOW, keyCode)
-          ) {
-            $("#filterChannels").toggle();
-            $("#televisionPlayer").toggle();
-          }
-
-          return;
-        }
-        var itemInRow = 4;
-        window.filteredChannels = window.channels;
-        if (keyCode === keyboard.RIGHT) {
-          if (window.televisionKeyboard.cursorX === itemInRow - 1) {
-            if (
-              window.filteredChannels[
-                (window.televisionKeyboard.cursorY + 1) * itemInRow
-              ]
-            ) {
-              window.televisionKeyboard.cursorX = 0;
-              window.televisionKeyboard.cursorY++;
-            }
-          } else {
-            var nextCursorX = Math.min(
-              window.televisionKeyboard.cursorX + 1,
-              itemInRow - 1
-            );
-            if (
-              window.filteredChannels[
-                nextCursorX + window.televisionKeyboard.cursorY * itemInRow
-              ]
-            ) {
-              window.televisionKeyboard.cursorX = nextCursorX;
-            }
-          }
-        } else if (keyCode === keyboard.LEFT) {
-          if (window.televisionKeyboard.cursorX === 0) {
-            if (
-              window.filteredChannels[
-                itemInRow -
-                  1 +
-                  (window.televisionKeyboard.cursorY - 1) * itemInRow
-              ]
-            ) {
-              window.televisionKeyboard.cursorX = itemInRow - 1;
-              window.televisionKeyboard.cursorY--;
-            }
-          } else {
-            window.televisionKeyboard.cursorX = Math.max(
-              window.televisionKeyboard.cursorX - 1,
-              0
-            );
-          }
-        } else if (keyCode === keyboard.TOP) {
-          window.televisionKeyboard.cursorY = Math.max(
-            window.televisionKeyboard.cursorY - 1,
-            0
-          );
-        } else if (keyCode === keyboard.BOTTOM) {
-          var nextCursorY = Math.min(
-            window.televisionKeyboard.cursorY + 1,
-            Math.ceil(window.filteredChannels.length / itemInRow) - 1
-          );
-          if (
-            !window.filteredChannels[
-              window.televisionKeyboard.cursorX + nextCursorY * itemInRow
-            ]
-          ) {
-            window.televisionKeyboard.cursorX =
-              (window.filteredChannels.length % itemInRow) - 1;
-          }
-          window.televisionKeyboard.cursorY = nextCursorY;
-        } else if (keyCode === keyboard.ENTER) {
-          var activeChannel =
-            window.filteredChannels[
-              window.televisionKeyboard.cursorX +
-                window.televisionKeyboard.cursorY * itemInRow
-            ];
-          if (activeChannel) {
-            $("#televisionPlayer")
-              .removeClass("not-fullscreen")
-              .addClass("fullscreen");
-          }
-        } else if (checkKey(keyboard.BACK, keyCode)) {
-          if ($("#televisionPlayer").hasClass("fullscreen")) {
-            $("#televisionPlayer")
-              .removeClass("fullscreen")
-              .addClass("not-fullscreen");
-          } else {
-            window.location.href = "#/";
-          }
-        } else if (checkKey(keyboard.BUTTON_YELLOW, keyCode)) {
-          $("#filterChannels").toggle();
-          $("#televisionPlayer").toggle();
-        }
-
-        $("#televisionCursor").css({
-          transform: `translate(${window.televisionKeyboard.cursorX *
-            (152 + 36)}px, ${window.televisionKeyboard.cursorY *
-            (123 + 36)}px)`,
-        });
-
-        var televisionOuter = $("#televisionContent").get(0);
-        var televisionInner = $("#televisionList").get(0);
-        var children = televisionInner.children;
-        if (
-          children[
-            window.televisionKeyboard.cursorX +
-              window.televisionKeyboard.cursorY * itemInRow
-          ]
-        ) {
-          var child =
-            children[
-              window.televisionKeyboard.cursorX +
-                window.televisionKeyboard.cursorY * itemInRow
-            ];
-          var top = child.offsetTop;
-          var bottom = top + child.clientHeight;
-          var outerTop = televisionOuter.scrollTop;
-          var outerBottom = outerTop + televisionOuter.clientHeight;
-          if (top < outerTop) {
-            televisionOuter.scrollTop = top;
-          } else if (bottom > outerBottom) {
-            televisionOuter.scrollTop = bottom - televisionOuter.clientHeight;
-          }
-
-          try {
-            var activeChannel =
-              window.filteredChannels[
-                window.televisionKeyboard.cursorX +
-                  window.televisionKeyboard.cursorY * itemInRow
-              ];
-            var url =
-              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd";
-            // var url = `${location.protocol}//${activeChannel.server}/dash/master-${activeChannel.ipAddress}/live.mpd`;
-            window.player.attachSource(url);
-
-            $("#channelTitle").html(activeChannel.name);
-            $("#channelCategory").html(activeChannel.category.join(", "));
-          } catch (e) {
-            console.error("Error initializing video player:", e);
-          }
-        }
-      }
+      window.TelevisionModule.handleKeyDown(event);
     },
   };
 
-  KeyboardModule.init();
+  window.KeyboardModule = KeyboardModule;
+  window.KeyboardModule.init();
 });

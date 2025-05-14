@@ -2,6 +2,7 @@ import "../scss/app.scss";
 
 import "./modules/LocaleModule";
 import "./modules/KeyboardModule";
+import "./modules/TelevisionModule";
 
 (function($) {
   var routes = {},
