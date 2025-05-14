@@ -170,8 +170,24 @@ $(function() {
           }
           window.televisionKeyboard.cursorY = nextCursorY;
         } else if (keyCode === keyboard.ENTER) {
+          var activeChannel =
+            window.filteredChannels[
+              window.televisionKeyboard.cursorX +
+                window.televisionKeyboard.cursorY * itemInRow
+            ];
+          if (activeChannel) {
+            $("#televisionPlayer")
+              .removeClass("not-fullscreen")
+              .addClass("fullscreen");
+          }
         } else if (checkKey(keyboard.BACK, keyCode)) {
-          window.location.href = "#/";
+          if ($("#televisionPlayer").hasClass("fullscreen")) {
+            $("#televisionPlayer")
+              .removeClass("fullscreen")
+              .addClass("not-fullscreen");
+          } else {
+            window.location.href = "#/";
+          }
         }
 
         $("#televisionCursor").css({
@@ -210,8 +226,9 @@ $(function() {
                 window.televisionKeyboard.cursorX +
                   window.televisionKeyboard.cursorY * itemInRow
               ];
-            var // url = "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
-              url = `${location.protocol}//${activeChannel.server}/dash/master-${activeChannel.ipAddress}/live.mpd`;
+            var url =
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd";
+            // var url = `${location.protocol}//${activeChannel.server}/dash/master-${activeChannel.ipAddress}/live.mpd`;
             window.player.attachSource(url);
 
             $("#channelTitle").html(activeChannel.name);
