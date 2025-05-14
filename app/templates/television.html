@@ -1,46 +1,42 @@
 <div id="television" class="page television-page">
   <div class="television-wrapper">
     <div class="television-container">
-       <div class="television-left">
+      <div class="television-left">
+        <div class="television-header">
+          <div class="television-title" id="televisionTitle"><strong>TV Channels </strong><span>19 of 19</span></div>
+          <div class="television-filters">
+            <div class="television-filter-category" id="televisionFilter">Any category</div>
+          </div>
+        </div>
+        <div class="television-left-content" id="televisionContent">
+          <div class="television-cursor" id="televisionCursor"></div>
+          <div class="television-list" id="televisionList">
+            <div class="television-item active">
+              <div class="television-item-inner" style="width: 152px; height: 86px;"><img alt="" width="152" height="86" src="http://103.153.72.195:8080/channellist/icon/BBC_World_News.png"></div>
+              <p class="title">BBC WORLD NEWS</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="television-right">
+        <div class="television-right-header">
           <div class="television-header">
-             <div class="television-title"><strong>TV Channels </strong><span>19 of 19</span></div>
-             <div class="television-filters">
-                <div class="television-filter-category">Any category</div>
-             </div>
+            <div class="television-title"><strong>&nbsp;</strong></div>
           </div>
-          <div class="television-left-content" id="televisionContent">
-             <div class="television-cursor" id="televisionCursor"></div>
-             <div class="television-list" id="televisionList">
-                <div class="television-item active">
-                   <div class="television-item-inner" style="width: 152px; height: 86px;"><img alt="" width="152" height="86" src="http://103.153.72.195:8080/channellist/icon/BBC_World_News.png"></div>
-                   <p class="title">BBC WORLD NEWS</p>
-                </div>
-             </div>
+          <div class="television-right-content">
+            <div class="television-player not-fullscreen">
+              <div class="television-player-header"></div>
+              <div class="television-react-player">
+                <video class="video-js" id="iptv-video" style="width: 100%; height: 100%"></video>
+              </div>
+              <div class="television-player-info">
+                <div class="channel-title" id="channelTitle">1. BBC WORLD NEWS</div>
+                <div class="channel-category" id="channelCategory">News, Drama</div>
+              </div>
+            </div>
           </div>
-       </div>
-       <div class="television-right">
-          <div class="television-right-header">
-             <div class="television-header">
-                <div class="television-title"><strong>&nbsp;</strong></div>
-             </div>
-             <div class="television-right-content">
-                <div class="television-player not-fullscreen">
-                   <div class="television-player-header"></div>
-                   <div class="television-react-player">
-                      <div data-vjs-player="true">
-                         <div>
-                            
-                         </div>
-                      </div>
-                   </div>
-                   <div class="television-player-info">
-                      <div class="channel-title">1. BBC WORLD NEWS</div>
-                      <div class="channel-category">News, Drama</div>
-                   </div>
-                </div>
-             </div>
-          </div>
-       </div>
+        </div>
+      </div>
     </div>
  </div>
   <div class="left-bottom-buttons-wrapper">
@@ -80,11 +76,11 @@
      </div>
   </div>
   <div class="right-bottom-buttons-wrapper">
-     <div class="right-bottom-buttons">
-        <button>
-           <div class="icon" style="background-color: rgb(231, 191, 17);"></div>
-           <div class="text"><span>Category</span></div>
-        </button>
-     </div>
+    <div class="right-bottom-buttons">
+      <button>
+        <div class="icon" style="background-color: rgb(231, 191, 17);"></div>
+        <div class="text"><span>Category</span></div>
+      </button>
+    </div>
   </div>
 </div>

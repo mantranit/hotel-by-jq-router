@@ -108,11 +108,11 @@ $(function() {
       }
       if ($("#television").is(":visible")) {
         var itemInRow = 4;
-        window.listFilter = window.channels;
+        window.filteredChannels = window.channels;
         if (keyCode === keyboard.RIGHT) {
           if (window.televisionKeyboard.cursorX === itemInRow - 1) {
             if (
-              window.listFilter[
+              window.filteredChannels[
                 (window.televisionKeyboard.cursorY + 1) * itemInRow
               ]
             ) {
@@ -125,7 +125,7 @@ $(function() {
               itemInRow - 1
             );
             if (
-              window.listFilter[
+              window.filteredChannels[
                 nextCursorX + window.televisionKeyboard.cursorY * itemInRow
               ]
             ) {
@@ -135,7 +135,7 @@ $(function() {
         } else if (keyCode === keyboard.LEFT) {
           if (window.televisionKeyboard.cursorX === 0) {
             if (
-              window.listFilter[
+              window.filteredChannels[
                 itemInRow -
                   1 +
                   (window.televisionKeyboard.cursorY - 1) * itemInRow
@@ -158,15 +158,15 @@ $(function() {
         } else if (keyCode === keyboard.BOTTOM) {
           var nextCursorY = Math.min(
             window.televisionKeyboard.cursorY + 1,
-            Math.ceil(window.listFilter.length / itemInRow) - 1
+            Math.ceil(window.filteredChannels.length / itemInRow) - 1
           );
           if (
-            !window.listFilter[
+            !window.filteredChannels[
               window.televisionKeyboard.cursorX + nextCursorY * itemInRow
             ]
           ) {
             window.televisionKeyboard.cursorX =
-              (window.listFilter.length % itemInRow) - 1;
+              (window.filteredChannels.length % itemInRow) - 1;
           }
           window.televisionKeyboard.cursorY = nextCursorY;
         } else if (keyCode === keyboard.ENTER) {
@@ -202,6 +202,22 @@ $(function() {
             televisionOuter.scrollTop = top;
           } else if (bottom > outerBottom) {
             televisionOuter.scrollTop = bottom - televisionOuter.clientHeight;
+          }
+
+          try {
+            var activeChannel =
+              window.filteredChannels[
+                window.televisionKeyboard.cursorX +
+                  window.televisionKeyboard.cursorY * itemInRow
+              ];
+            var // url = "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+              url = `${location.protocol}//${activeChannel.server}/dash/master-${activeChannel.ipAddress}/live.mpd`;
+            window.player.attachSource(url);
+
+            $("#channelTitle").html(activeChannel.name);
+            $("#channelCategory").html(activeChannel.category.join(", "));
+          } catch (e) {
+            console.error("Error initializing video player:", e);
           }
         }
       }

@@ -19,8 +19,11 @@
     "node": ">=10.15.3"
   },
   "dependencies": {
+    "@videojs/http-streaming": "^3.15.0",
     "autoprefixer": "^9.6.0",
-    "normalize-css": "^2.3.1"
+    "es6-shim": "^0.35.8",
+    "normalize-css": "^2.3.1",
+    "video.js": "^8.22.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",

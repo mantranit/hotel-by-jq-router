@@ -1,6 +1,7 @@
 var vm = {};
 (function() {
-  window.channels = [
+  window.channelFilter = [];
+  window.filteredChannels = window.channels = [
     // {
     //   id: "SEASHELLS TV",
     //   name: "SEASHELLS TV",
@@ -767,8 +768,41 @@ var vm = {};
   };
 
   vm.televisionVM = function(route, param) {
+    $("#televisionTitle").html(
+      `<strong>` +
+        i18njs.get("TV Channels") +
+        `</strong> <span>` +
+        window.filteredChannels.length +
+        ` of ` +
+        window.channels.length +
+        `</span>`
+    );
+    if (window.channelFilter.length > 0) {
+      $("#televisionFilter").html(window.channelFilter.join(", "));
+    } else {
+      $("#televisionFilter").html(i18njs.get("Any category"));
+    }
+
+    try {
+      var activeChannel = window.filteredChannels[0];
+      var video,
+        url = "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+        // url = `${location.protocol}//${activeChannel.server}/dash/master-${activeChannel.ipAddress}/live.mpd`;
+        video = document.getElementById("iptv-video");
+      window.player = dashjs.MediaPlayer().create();
+      window.player.initialize();
+      window.player.attachView(video);
+      window.player.setAutoPlay(true);
+      window.player.attachSource(url);
+
+      $("#channelTitle").html(activeChannel.name);
+      $("#channelCategory").html(activeChannel.category.join(", "));
+    } catch (e) {
+      console.error("Error initializing video player:", e);
+    }
+
     $("#televisionList").empty();
-    window.channels.forEach(function(item, index) {
+    window.filteredChannels.forEach(function(item, index) {
       $("#televisionList").append(
         `<div class="television-item active">
           <div class="television-item-inner">
