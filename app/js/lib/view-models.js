@@ -297,6 +297,20 @@ var vm = {};
       order: 1,
     },
   ];
+
+  window.channelCategories = [];
+  window.channelCategoriesCount = [];
+  window.channels.forEach(function(channel) {
+    channel.category.forEach(function(category) {
+      if (window.channelCategories.indexOf(category) === -1) {
+        window.channelCategories.push(category);
+        window.channelCategoriesCount[category] = 1;
+      } else {
+        window.channelCategoriesCount[category]++;
+      }
+    });
+  });
+
   window.menu = [
     {
       id: "tv",
@@ -814,6 +828,31 @@ var vm = {};
           item.name +
           `</p>
         </div>`
+      );
+    });
+
+    $("#filterChannels .filter-channels-inner").html(
+      `<div class="filter-channels-item active">
+              <div>
+                <div>Any</div>
+                <div class="count">` +
+        window.channels.length +
+        `</div>
+              </div>
+            </div>`
+    );
+    window.channelCategories.forEach(function(item, index) {
+      $("#filterChannels .filter-channels-inner").append(
+        `<div class="filter-channels-item">
+              <div>
+                <div>` +
+          item +
+          `</div>
+                <div class="count">` +
+          window.channelCategoriesCount[item] +
+          `</div>
+              </div>
+            </div>`
       );
     });
   };

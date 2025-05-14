@@ -46,6 +46,9 @@ $(function() {
         cursorX: 0,
         cursorY: 0,
       };
+      window.televisionFilterKeyboard = {
+        cursor: 0,
+      };
     },
 
     bindEvents: function() {
@@ -107,6 +110,35 @@ $(function() {
         });
       }
       if ($("#television").is(":visible")) {
+        if ($("#filterChannels").is(":visible")) {
+          if (keyCode === keyboard.TOP) {
+            window.televisionFilterKeyboard.cursor = Math.max(
+              window.televisionFilterKeyboard.cursor - 1,
+              0
+            );
+          } else if (keyCode === keyboard.BOTTOM) {
+            window.televisionFilterKeyboard.cursor = Math.min(
+              window.televisionFilterKeyboard.cursor + 1,
+              window.channelsCategories.length - 1
+            );
+          } else if (keyCode === keyboard.ENTER) {
+            var filter = $("#filterChannels").val();
+            console.log("Filter: ", filter);
+            window.filteredChannels = window.channels.filter(function(channel) {
+              return channel.name.toLowerCase().includes(filter.toLowerCase());
+            });
+            window.televisionKeyboard.cursorX = 0;
+            window.televisionKeyboard.cursorY = 0;
+          } else if (
+            checkKey(keyboard.BACK, keyCode) ||
+            checkKey(keyboard.BUTTON_YELLOW, keyCode)
+          ) {
+            $("#filterChannels").toggle();
+            $("#televisionPlayer").toggle();
+          }
+
+          return;
+        }
         var itemInRow = 4;
         window.filteredChannels = window.channels;
         if (keyCode === keyboard.RIGHT) {
@@ -188,6 +220,9 @@ $(function() {
           } else {
             window.location.href = "#/";
           }
+        } else if (checkKey(keyboard.BUTTON_YELLOW, keyCode)) {
+          $("#filterChannels").toggle();
+          $("#televisionPlayer").toggle();
         }
 
         $("#televisionCursor").css({
