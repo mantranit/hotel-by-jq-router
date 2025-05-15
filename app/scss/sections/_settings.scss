@@ -1,0 +1,36 @@
+.settings-wrapper {
+  .settings-content {
+    width: 860px;
+    height: 452px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 3px 37px 3px 3px;
+    position: relative;
+    .settings-content-inner {
+      display: flex;
+      gap: 20px;
+      flex-direction: column;
+    }
+  }
+}
+.setting-option-wrapper {
+  label {
+    display: block;
+    padding-bottom: 5px;
+  }
+  .setting-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 17px;
+    border: 1px solid white;
+    border-radius: 8px;
+    margin: 2px;
+    &.active {
+      margin: 0;
+      border: 3px solid #2459ab;
+      animation: tv_cur_live 2s ease-in-out infinite alternate;
+      border-radius: 10px;
+    }
+  }
+}

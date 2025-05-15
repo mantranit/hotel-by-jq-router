@@ -4,6 +4,7 @@ $(function() {
     cursor: 0,
   };
   var HomeModule = {
+    visibleItem: 5,
     handleKeyDown: function(event) {
       const keyCode = event.keyCode || event.which;
       if ($("#homePage").is(":visible")) {
@@ -14,7 +15,7 @@ $(function() {
           );
           window.homeKeyboard.cursor = Math.min(
             window.homeKeyboard.cursor + 1,
-            4
+            this.visibleItem - 1
           );
         } else if (keyCode === window.keyboard.LEFT) {
           window.homeKeyboard.currentIndex = Math.max(
@@ -42,8 +43,8 @@ $(function() {
         $("#btnArrowLeft").removeClass("disabled");
       }
       if (
-        4 - window.homeKeyboard.cursor ===
-        16 - window.homeKeyboard.currentIndex
+        this.visibleItem - window.homeKeyboard.cursor ===
+        window.menu.length - window.homeKeyboard.currentIndex
       ) {
         $("#btnArrowRight").addClass("disabled");
       } else {

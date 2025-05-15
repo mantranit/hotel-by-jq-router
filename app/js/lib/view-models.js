@@ -386,7 +386,7 @@ var vm = {};
       `,
       text: "Restaurants & Bars",
       path: "/categories/restaurants-bars",
-      active: true,
+      active: false,
     },
     {
       id: "spa-fitness",
@@ -405,7 +405,7 @@ var vm = {};
       `,
       text: "Spa & Fitness",
       path: "/categories/spa-fitness",
-      active: true,
+      active: false,
     },
     {
       id: "shopping",
@@ -424,7 +424,7 @@ var vm = {};
       `,
       text: "Shopping",
       path: "/categories/shopping",
-      active: true,
+      active: false,
     },
     {
       id: "my-orders",
@@ -443,7 +443,7 @@ var vm = {};
       `,
       text: "My Orders",
       path: "/my-orders",
-      active: true,
+      active: false,
     },
     {
       id: "movies",
@@ -463,7 +463,7 @@ var vm = {};
       text: "Movies",
       textDetails: "Video on Demand",
       path: "/categories/movies",
-      active: true,
+      active: false,
     },
     {
       id: "radio",
@@ -501,7 +501,7 @@ var vm = {};
       `,
       text: "Hotel Information",
       path: "/categories/hotel-information",
-      active: true,
+      active: false,
     },
     {
       id: "room-service",
@@ -520,7 +520,7 @@ var vm = {};
       `,
       text: "Room Service",
       path: "/categories/room-service",
-      active: true,
+      active: false,
     },
     {
       id: "wake-up-call",
@@ -596,7 +596,7 @@ var vm = {};
       `,
       text: "Check Bill",
       path: "/check-bill",
-      active: true,
+      active: false,
     },
     {
       id: "flight",
@@ -636,7 +636,7 @@ var vm = {};
       path: "/settings",
       active: true,
     },
-  ];
+  ].filter((item) => item.active);
 
   window.sourceList = [
     {
@@ -669,6 +669,13 @@ var vm = {};
       icon: "sources-icon-cast",
       content: "Display the ChromeCast",
     },
+  ];
+
+  window.siteLanguages = [
+    { code: "en", name: "English" },
+    { code: "vi", name: "Vietnamese (Tiếng Việt)" },
+    { code: "zh", name: "Chinese Simplified (简体中文)" },
+    { code: "fr", name: "French (Français)" },
   ];
 
   var categories = ["Electronics", "Appliances", "Furniture", "Sports"];
@@ -882,5 +889,11 @@ var vm = {};
     $("#productName").text(product.name);
     $("#price").text(product.price);
     $("#rating").text(product.rating);
+  };
+  vm.settingsVM = function(route, param) {
+    window.SettingsModule.renderOptions();
+  };
+  vm.settingsLanguageVM = function(route, param) {
+    window.SettingsLanguageModule.renderOptions();
   };
 })();

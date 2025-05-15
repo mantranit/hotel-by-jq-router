@@ -4,6 +4,8 @@ import "./modules/LocaleModule";
 import "./modules/HomeModule";
 import "./modules/TelevisionModule";
 import "./modules/ConnectivityModule";
+import "./modules/SettingsModule";
+import "./modules/SettingsLanguageModule";
 import "./modules/KeyboardModule";
 
 // header
@@ -19,7 +21,7 @@ import "./modules/AppModule";
     viewModel: vm["welcomeVM"],
   };
 
-  routes["store"] = {
+  routes["home"] = {
     url: "#/",
     templateUrl: "templates/home.html",
     viewModel: vm["homeVM"],
@@ -54,6 +56,18 @@ import "./modules/AppModule";
       "#/categories/:categoryId/sub-categories/:subCategoryId/products/:productId",
     templateUrl: "templates/product-detail.html",
     viewModel: vm["productDetailVM"],
+  };
+
+  routes["settings"] = {
+    url: "#/settings",
+    templateUrl: "templates/settings.html",
+    viewModel: vm["settingsVM"],
+  };
+
+  routes["settings-language"] = {
+    url: "#/settings/language",
+    templateUrl: "templates/settings-language.html",
+    viewModel: vm["settingsLanguageVM"],
   };
 
   $.router
