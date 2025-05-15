@@ -6,6 +6,9 @@ import "./modules/TelevisionModule";
 import "./modules/ConnectivityModule";
 import "./modules/KeyboardModule";
 
+// header
+import "./modules/AppModule";
+
 (function($) {
   var routes = {},
     defaultRoute = "welcome";

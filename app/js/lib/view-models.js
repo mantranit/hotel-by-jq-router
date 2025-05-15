@@ -801,6 +801,7 @@ var vm = {};
   vm.televisionVM = function(route, param) {
     window.TelevisionModule.initIPTVPlayer();
     window.TelevisionModule.renderChannels();
+    window.TelevisionModule.renderCursor();
     window.TelevisionModule.renderCategories();
   };
 
