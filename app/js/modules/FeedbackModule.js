@@ -71,6 +71,7 @@ $(function() {
             window.feedbackKeyboard.cursor = 0;
             window.feedbackKeyboard.cursorSelect = 0;
             window.location.href = "#/";
+            return;
           } else if (
             window.feedbackKeyboard.cursor === window.feedbackList.length
           ) {
@@ -93,6 +94,11 @@ $(function() {
                 window.feedbackKeyboard.cursorSelect
               ];
           }
+          // go to next feedback
+          window.feedbackKeyboard.cursor = Math.min(
+            window.feedbackKeyboard.cursor + 1,
+            window.feedbackList.length
+          );
         } else if (window.keyboard.BACK.includes(keyCode)) {
           window.location.href = "#/";
         }
