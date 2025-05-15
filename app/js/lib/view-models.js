@@ -823,13 +823,7 @@ var vm = {};
 
   vm.welcomeVM = function(route, param) {
     $("#welcomeTitle").html(
-      i18njs.get("welcome.Dear", {
-        name: "John Doe",
-        roomNumber: "101",
-      }) +
-        "<strong>" +
-        "Mr. Tuan Le" +
-        "</strong>"
+      i18njs.get("welcome.Dear") + "<strong>" + "Mr. Tuấn Lê" + "</strong>"
     );
     $("#welcomeBrief").html(i18njs.get("welcome.Brief"));
     $("#welcomeContinue").html(i18njs.get("welcome.Continue"));
