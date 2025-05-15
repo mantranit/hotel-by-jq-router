@@ -8,6 +8,7 @@ $(function() {
     selected: [],
   };
   var TelevisionModule = {
+    timeHide: 0,
     iptvPlayer: null,
     handleKeyDown: function(event) {
       const keyCode = event.keyCode || event.which;
@@ -131,6 +132,12 @@ $(function() {
             $("#televisionPlayer")
               .removeClass("fullscreen")
               .addClass("not-fullscreen");
+
+            if (this.timeHide) {
+              clearTimeout(this.timeHide);
+            }
+            $("#header").show();
+            $("#televisionPlayerInfo").show();
           } else {
             window.location.href = "#/";
           }
@@ -200,6 +207,14 @@ $(function() {
 
         $("#channelTitle").html(activeChannel.name);
         $("#channelCategory").html(activeChannel.category.join(", "));
+
+        if ($("#televisionPlayer").hasClass("fullscreen")) {
+          $("#televisionPlayerInfo").show();
+          this.timeHide = setTimeout(() => {
+            $("#header").fadeOut(2000);
+            $("#televisionPlayerInfo").fadeOut(2000);
+          }, 3000);
+        }
       }
     },
     renderChannels: function() {
