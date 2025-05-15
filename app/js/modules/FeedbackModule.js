@@ -31,7 +31,10 @@ $(function() {
           ) {
             const prevCursorSelect = window.feedbackKeyboard.cursorSelect - 1;
             if (prevCursorSelect <= -1) {
-              window.feedbackKeyboard.cursor--;
+              window.feedbackKeyboard.cursor = Math.max(
+                window.feedbackKeyboard.cursor - 1,
+                0
+              );
             } else {
               window.feedbackKeyboard.cursorSelect = prevCursorSelect;
             }
@@ -52,7 +55,10 @@ $(function() {
               nextCursorSelect >=
               window.feedbackList[window.feedbackKeyboard.cursor].options.length
             ) {
-              window.feedbackKeyboard.cursor++;
+              window.feedbackKeyboard.cursor = Math.min(
+                window.feedbackKeyboard.cursor + 1,
+                window.feedbackList.length
+              );
             } else {
               window.feedbackKeyboard.cursorSelect = nextCursorSelect;
             }
