@@ -1,0 +1,63 @@
+.wake-up-call-background {
+  background: url("https://seashell-assets.oss-cn-hangzhou.aliyuncs.com/wake-up-call-bg.png")
+    no-repeat center center;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.wake-up-call-wrapper {
+  position: relative;
+  z-index: 1;
+  .wake-up-call-content {
+    width: 860px;
+    height: 452px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 3px 37px 3px 3px;
+    position: relative;
+    .wake-up-call-content-inner {
+      display: flex;
+      gap: 3px;
+      flex-direction: column;
+    }
+  }
+  .wake-up-call-button {
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+  }
+  .wake-up-call-option {
+    font-size: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    border: 3px solid transparent;
+    .wake-up-call-option-icon {
+      opacity: 0;
+    }
+    &.selected {
+      margin: 2px;
+      border: 1px solid #2459ab;
+      animation: tv_cur_live 2s ease-in-out infinite alternate;
+      border-radius: 10px;
+      .wake-up-call-option-icon {
+        opacity: 1;
+      }
+    }
+    &.active {
+      margin: 0;
+      border: 3px solid #2459ab;
+      animation: tv_cur_live 2s ease-in-out infinite alternate;
+      border-radius: 10px;
+    }
+    svg {
+      fill: white;
+      width: 27px;
+      height: 20px;
+    }
+  }
+}

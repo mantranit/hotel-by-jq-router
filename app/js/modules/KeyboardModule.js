@@ -46,6 +46,7 @@ $(function() {
       window.HomeModule.handleKeyDown(event);
       window.TelevisionModule.handleKeyDown(event);
       window.ConnectivityModule.handleKeyDown(event);
+      window.WakeUpCallModule.handleKeyDown(event);
       window.FeedbackModule.handleKeyDown(event);
       window.SettingsModule.handleKeyDown(event);
       window.SettingsLanguageModule.handleKeyDown(event);

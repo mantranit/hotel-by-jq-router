@@ -671,6 +671,34 @@ var vm = {};
     },
   ];
 
+  window.wakeUpCallTrack = [
+    {
+      title: "Inspiration Morning",
+      audio: "/assets/images/wakeup/audio/01.mp3",
+      image: "/assets/images/wakeup/image/01.jpg",
+    },
+    {
+      title: "Birds in a Forest",
+      audio: "/assets/images/wakeup/audio/02.mp3",
+      image: "/assets/images/wakeup/image/02.jpg",
+    },
+    {
+      title: "Morning Touch",
+      audio: "/assets/images/wakeup/audio/03.mp3",
+      image: "/assets/images/wakeup/image/03.jpg",
+    },
+    {
+      title: "Brand New Day",
+      audio: "/assets/images/wakeup/audio/04.mp3",
+      image: "/assets/images/wakeup/image/04.jpg",
+    },
+    {
+      title: "Summer Jump",
+      audio: "/assets/images/wakeup/audio/05.mp3",
+      image: "/assets/images/wakeup/image/05.jpg",
+    },
+  ];
+
   window.feedbackList = [
     {
       name: "Atmosphere",
@@ -919,8 +947,13 @@ var vm = {};
     $("#rating").text(product.rating);
   };
 
+  vm.wakeUpCallVM = function(route, param) {
+    window.WakeUpCallModule.renderTrack();
+  };
+
   vm.feedbackVM = function(route, param) {
     window.FeedbackModule.renderFeedback();
+    window.FeedbackModule.scrollTo();
   };
 
   vm.settingsVM = function(route, param) {
