@@ -4,6 +4,7 @@ import "./modules/LocaleModule";
 import "./modules/HomeModule";
 import "./modules/TelevisionModule";
 import "./modules/ConnectivityModule";
+import "./modules/FeedbackModule";
 import "./modules/SettingsModule";
 import "./modules/SettingsLanguageModule";
 import "./modules/KeyboardModule";
@@ -56,6 +57,12 @@ import "./modules/AppModule";
       "#/categories/:categoryId/sub-categories/:subCategoryId/products/:productId",
     templateUrl: "templates/product-detail.html",
     viewModel: vm["productDetailVM"],
+  };
+
+  routes["feedback"] = {
+    url: "#/feedback",
+    templateUrl: "templates/feedback.html",
+    viewModel: vm["feedbackVM"],
   };
 
   routes["settings"] = {

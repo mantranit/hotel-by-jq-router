@@ -671,6 +671,40 @@ var vm = {};
     },
   ];
 
+  window.feedbackList = [
+    {
+      name: "Atmosphere",
+      type: "star",
+      value: 0,
+      selected: 1,
+    },
+    {
+      name: "Cleanness",
+      type: "star",
+      value: 0,
+      selected: 1,
+    },
+    {
+      name: "Food quality",
+      type: "star",
+      value: 0,
+      selected: 1,
+    },
+    {
+      name: "Customer service",
+      type: "star",
+      value: 0,
+      selected: 1,
+    },
+    {
+      name: "Why did you choose us?",
+      type: "select",
+      value: "",
+      options: ["Location", "Price", "Recommendations"],
+      selected: 1,
+    },
+  ];
+
   window.siteLanguages = [
     { code: "en", name: "English" },
     { code: "vi", name: "Vietnamese (Tiếng Việt)" },
@@ -890,6 +924,11 @@ var vm = {};
     $("#price").text(product.price);
     $("#rating").text(product.rating);
   };
+
+  vm.feedbackVM = function(route, param) {
+    window.FeedbackModule.renderFeedback();
+  };
+
   vm.settingsVM = function(route, param) {
     window.SettingsModule.renderOptions();
   };
