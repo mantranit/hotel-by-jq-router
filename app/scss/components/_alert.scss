@@ -1,0 +1,23 @@
+.site-alert {
+  padding-top: 140px !important;
+  .site-modal-title {
+    font-family: "Gotham Book" !important;
+    margin-bottom: 36px !important;
+  }
+  .site-alert-icon {
+    fill: white;
+    width: 100px;
+    margin: 20px auto;
+  }
+  p {
+    margin: 30px 0 40px;
+    font-size: 25px;
+  }
+
+  .modal-action {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+}

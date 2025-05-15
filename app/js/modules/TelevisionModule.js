@@ -11,7 +11,7 @@ $(function() {
     iptvPlayer: null,
     handleKeyDown: function(event) {
       const keyCode = event.keyCode || event.which;
-      if ($("#television").is(":visible")) {
+      if ($("#televisionPage").is(":visible")) {
         if ($("#filterChannels").is(":visible")) {
           if (keyCode === window.keyboard.TOP) {
             window.televisionFilterKeyboard.cursor = Math.max(
@@ -180,7 +180,7 @@ $(function() {
         this.iptvPlayer.attachView(video);
         this.iptvPlayer.setAutoPlay(true);
         this.iptvPlayer.attachSource(url);
-  
+
         $("#channelTitle").html(activeChannel.name);
         $("#channelCategory").html(activeChannel.category.join(", "));
       } catch (e) {

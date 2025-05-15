@@ -1,0 +1,51 @@
+.connectivity-wrapper {
+  .connectivity-content {
+    width: 860px;
+    height: 452px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 13px 37px 3px 3px;
+    position: relative;
+    .connectivity-cursor {
+      position: absolute;
+      width: 406px;
+      height: 96px;
+      border: 3px solid #2459ab;
+      border-radius: 10px;
+      animation: tv_cur_live 2s ease-in-out infinite alternate;
+      z-index: 5;
+      margin: -2px 0 0 -2px;
+    }
+    .connectivity-list {
+      overflow: hidden;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      // gap: 20px;
+    }
+  }
+  .connectivity-item {
+    width: 400px;
+    height: 90px;
+    border: 2px solid #242424;
+    margin: 20px 0 0 20px;
+    border-radius: 10px;
+    font-size: 26px;
+    display: flex;
+    align-items: center;
+    &:nth-child(2n + 1) {
+      margin-left: 0;
+    }
+    &:nth-child(1),
+    &:nth-child(2) {
+      margin-top: 0;
+    }
+    i {
+      font-size: 50px;
+      width: 90px;
+      text-align: center;
+    }
+  }
+}

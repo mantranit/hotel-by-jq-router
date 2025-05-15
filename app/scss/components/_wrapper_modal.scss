@@ -1,0 +1,26 @@
+.site-modal {
+  z-index: 6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-top: 180px;
+  text-align: left;
+  background: rgba(0, 0, 0, 0.97);
+  .site-modal-inner {
+    width: 600px;
+    margin: 0 auto;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 30px 0 40px;
+    text-align: center;
+  }
+  .site-modal-title {
+    font-size: 38px;
+    font-family: "Gotham Regular";
+    line-height: 1;
+    text-align: center;
+    margin: 0;
+  }
+}

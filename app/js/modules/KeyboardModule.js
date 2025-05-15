@@ -29,10 +29,6 @@ $(function() {
   var KeyboardModule = {
     init: function() {
       this.bindEvents();
-      window.homeKeyboard = {
-        currentIndex: 0,
-        cursor: 0,
-      };
     },
 
     bindEvents: function() {
@@ -41,58 +37,15 @@ $(function() {
 
     handleKeyDown: function(event) {
       const keyCode = event.keyCode || event.which;
-      if ($("#welcome").is(":visible")) {
+      if ($("#welcomePage").is(":visible")) {
         if (keyCode === keyboard.ENTER) {
           window.location.href = "#/";
         }
       }
-      if ($("#home").is(":visible")) {
-        if (keyCode === window.keyboard.RIGHT) {
-          window.homeKeyboard.currentIndex = Math.min(
-            window.homeKeyboard.currentIndex + 1,
-            window.menu.length - 1
-          );
-          window.homeKeyboard.cursor = Math.min(
-            window.homeKeyboard.cursor + 1,
-            4
-          );
-        } else if (keyCode === window.keyboard.LEFT) {
-          window.homeKeyboard.currentIndex = Math.max(
-            window.homeKeyboard.currentIndex - 1,
-            0
-          );
-          window.homeKeyboard.cursor = Math.max(
-            window.homeKeyboard.cursor - 1,
-            0
-          );
-        } else if (keyCode === window.keyboard.ENTER) {
-          const currentItem = window.menu[window.homeKeyboard.currentIndex];
-          console.log(currentItem.path, "#" + currentItem.path);
-          window.location.href = "#" + currentItem.path;
-        }
-        if (window.homeKeyboard.cursor === window.homeKeyboard.currentIndex) {
-          $("#btnArrowLeft").addClass("disabled");
-        } else {
-          $("#btnArrowLeft").removeClass("disabled");
-        }
-        if (
-          4 - window.homeKeyboard.cursor ===
-          16 - window.homeKeyboard.currentIndex
-        ) {
-          $("#btnArrowRight").addClass("disabled");
-        } else {
-          $("#btnArrowRight").removeClass("disabled");
-        }
-        $("#menuCursor").css({
-          transform: `translate(${window.homeKeyboard.cursor * 236}px, 0)`,
-        });
-        $("#menuScroller").css({
-          transform: `translateX(${-(
-            window.homeKeyboard.currentIndex - window.homeKeyboard.cursor
-          ) * 236}px)`,
-        });
-      }
+
+      window.HomeModule.handleKeyDown(event);
       window.TelevisionModule.handleKeyDown(event);
+      window.ConnectivityModule.handleKeyDown(event);
     },
   };
 

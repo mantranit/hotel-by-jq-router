@@ -1,8 +1,10 @@
 import "../scss/app.scss";
 
 import "./modules/LocaleModule";
-import "./modules/KeyboardModule";
+import "./modules/HomeModule";
 import "./modules/TelevisionModule";
+import "./modules/ConnectivityModule";
+import "./modules/KeyboardModule";
 
 (function($) {
   var routes = {},
@@ -24,6 +26,12 @@ import "./modules/TelevisionModule";
     url: "#/television",
     templateUrl: "templates/television.html",
     viewModel: vm["televisionVM"],
+  };
+
+  routes["connectivity"] = {
+    url: "#/connectivity",
+    templateUrl: "templates/connectivity.html",
+    viewModel: vm["connectivityVM"],
   };
 
   routes["categoryDetail"] = {

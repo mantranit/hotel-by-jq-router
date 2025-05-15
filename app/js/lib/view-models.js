@@ -637,6 +637,40 @@ var vm = {};
       active: true,
     },
   ];
+
+  window.sourceList = [
+    {
+      name: "Screen Sharing",
+      icon: "sources-icon-androidwindows",
+      content: "Turn on MiraCast/ScreenShare",
+    },
+    {
+      name: "Bluetooth",
+      icon: "sources-icon-settings_bluetooth",
+      content: "Display the Bluetooth",
+    },
+    {
+      name: "USB",
+      icon: "sources-icon-usb",
+      content: "Open USB Browser",
+    },
+    {
+      name: "Sources List",
+      icon: "sources-icon-settings_input_hdmi",
+      content: "Display Sources list",
+    },
+    {
+      name: "Apple TV",
+      icon: "sources-icon-airplay",
+      content: "Display the Apple TV",
+    },
+    {
+      name: "ChromeCast",
+      icon: "sources-icon-cast",
+      content: "Display the ChromeCast",
+    },
+  ];
+
   var categories = ["Electronics", "Appliances", "Furniture", "Sports"];
 
   var subCategories = [
@@ -761,29 +795,17 @@ var vm = {};
   };
 
   vm.homeVM = function(route, param) {
-    $("#menuScroller").empty();
-    window.menu.forEach(function(item, index) {
-      $("#menuScroller").append(
-        `<div class="menu-item">
-          <div class="a">
-            <div class="icon">` +
-          item.icon +
-          `</div>
-            <div class="text">
-              <span>` +
-          item.text +
-          `</span>
-            </div>
-          </div>
-        </div>`
-      );
-    });
+    window.HomeModule.renderMenu();
   };
 
   vm.televisionVM = function(route, param) {
     window.TelevisionModule.initIPTVPlayer();
     window.TelevisionModule.renderChannels();
     window.TelevisionModule.renderCategories();
+  };
+
+  vm.connectivityVM = function(route, param) {
+    window.ConnectivityModule.renderSources();
   };
 
   vm.storeVM = function(route, param) {

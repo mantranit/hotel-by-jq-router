@@ -24,6 +24,10 @@
 /* Components */
 @import "layout/header";
 @import "layout/footer";
+@import "components/button";
+@import "components/wrapper";
+@import "components/wrapper_modal";
+@import "components/alert";
 
 /* Demo styles */
 @import "sections/video_background";
@@ -32,3 +36,4 @@
 @import "sections/welcome";
 @import "sections/menu_vertical";
 @import "sections/television";
+@import "sections/connectivity";
