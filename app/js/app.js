@@ -4,6 +4,7 @@ import "./modules/LocaleModule";
 import "./modules/HomeModule";
 import "./modules/TelevisionModule";
 import "./modules/ConnectivityModule";
+import "./modules/CategoryModule";
 import "./modules/WakeUpCallModule";
 import "./modules/FeedbackModule";
 import "./modules/SettingsModule";
@@ -47,18 +48,18 @@ import "./modules/AppModule";
     viewModel: vm["categoryVM"],
   };
 
-  routes["subCategoryDetail"] = {
-    url: "#/categories/:categoryId/sub-categories/:subCategoryId",
-    templateUrl: "templates/product.html",
-    viewModel: vm["productVM"],
-  };
+  // routes["subCategoryDetail"] = {
+  //   url: "#/categories/:categoryId/sub-categories/:subCategoryId",
+  //   templateUrl: "templates/product.html",
+  //   viewModel: vm["productVM"],
+  // };
 
-  routes["productDetail"] = {
-    url:
-      "#/categories/:categoryId/sub-categories/:subCategoryId/products/:productId",
-    templateUrl: "templates/product-detail.html",
-    viewModel: vm["productDetailVM"],
-  };
+  // routes["productDetail"] = {
+  //   url:
+  //     "#/categories/:categoryId/sub-categories/:subCategoryId/products/:productId",
+  //   templateUrl: "templates/product-detail.html",
+  //   viewModel: vm["productDetailVM"],
+  // };
 
   routes["wakeUpCall"] = {
     url: "#/wake-up-call",

@@ -671,6 +671,934 @@ var vm = {};
     },
   ];
 
+  window.dining = [
+    {
+      id: "dining001",
+      category: [],
+      title: "Breakfasts",
+      time: "07:00-11:00",
+      img:
+        "http://103.153.72.195:8080/c/i/65779f4293008bc9191a6a6b27a4d1f1.jpg",
+      type: "category",
+      parentId: "dining",
+    },
+    {
+      id: "dining00101",
+      title: "Oatmeal Breakfast",
+      time: "07:00-11:00",
+      img:
+        "http://103.153.72.195:8080/c/i/044dd29d8fee0db299ddf034471e1ea6.jpg",
+      imgDetails:
+        "http://103.153.72.195:8080/c/i/044dd29d8fee0db299ddf034471e1ea6.jpg",
+      type: "subcategory",
+      description:
+        "Our Oatmeal is served warm with your choice of Fried Apples, Pecans, Raisins, Fresh Sliced Bananas or 100% Pure Natural Syrup.",
+      tags: ["Vegan"],
+      price: 16,
+      parentId: "dining001",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "chooseOptions",
+      orderOptions: [
+        {
+          name: "Double Size (600g)",
+          price: 4,
+          type: "yesNo",
+          value: false,
+        },
+        {
+          name: "Choose Your Topping",
+          price: 3,
+          type: "select",
+          value: "None",
+          select: [
+            "None",
+            "Fried Apples",
+            "Sliced Banana",
+            "100% Pure Natural Syrup",
+            "Pecan",
+          ],
+        },
+      ],
+    },
+    {
+      id: "dining00102",
+      title: "Pecan Pancakes",
+      time: "07:00-11:00",
+      img:
+        "http://103.153.72.195:8080/c/i/e6f9d2c47cfcd623d2000a3ac2ec61d7.jpg",
+      imgDetails:
+        "http://103.153.72.195:8080/c/i/e6f9d2c47cfcd623d2000a3ac2ec61d7.jpg",
+      type: "subcategory",
+      description:
+        "Three Buttermilk Pancakes loaded with pecans and served with real Butter and a warm bottle of 100% Pure Natural Syrup.",
+      tags: ["Vegan"],
+      price: 8,
+      parentId: "dining001",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "chooseOptions",
+      orderOptions: [
+        {
+          name: "Additional Pecan (10g)",
+          price: 2,
+          type: "quantity",
+          value: 0,
+        },
+      ],
+    },
+    {
+      id: "dining00103",
+      title: "French Toast",
+      time: "07:00-11:00",
+      img:
+        "http://103.153.72.195:8080/c/i/5ffd16b6c4b133657005fd2ba16ffdc3.jpg",
+      imgDetails:
+        "http://103.153.72.195:8080/c/i/5ffd16b6c4b133657005fd2ba16ffdc3.jpg",
+      type: "subcategory",
+      description:
+        "Four slices of our own Sourdough Bread (regular or whole-wheat) dipped in egg then grilled to perfection. Served with any Fruit Topping or 100% Pure Natural Syrup.",
+      tags: ["French Cuisine", "Vegan"],
+      price: 11,
+      parentId: "dining001",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining00104",
+      title: "Biscuits n' Gravy with Bacon",
+      time: "07:00-11:00",
+      img:
+        "http://103.153.72.195:8080/c/i/5f7a6301720858d14164d7a09f0ce417.jpg",
+      imgDetails:
+        "http://103.153.72.195:8080/c/i/5f7a6301720858d14164d7a09f0ce417.jpg",
+      type: "subcategory",
+      description:
+        "Three buttermilk biscuits with sawmill gravy and thick-sliced bacon.",
+      tags: ["French Cuisine"],
+      price: 16,
+      parentId: "dining001",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining002",
+      category: [],
+      title: "Starters",
+      time: "07:00-23:00",
+      img:
+        "http://103.153.72.195:8080/c/i/e4810e983e79f0481a27a6d0355ca16d.jpg",
+      type: "category",
+      parentId: "dining",
+    },
+    {
+      id: "dining00201",
+      title: "Bruschetta with Tomato & Basil",
+      time: "07:00-11:00",
+      img:
+        "http://103.153.72.195:8080/c/i/5004a57daf5837eec5d693a4a60f3cc1.jpg",
+      imgDetails:
+        "http://103.153.72.195:8080/c/i/5004a57daf5837eec5d693a4a60f3cc1.jpg",
+      type: "subcategory",
+      description:
+        "Our Oatmeal is served warm with your choice of Fried Apples, Pecans, Raisins, Fresh Sliced Bananas or 100% Pure Natural Syrup.",
+      tags: ["Vegan"],
+      price: 7,
+      parentId: "dining002",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining00202",
+      title: "Seafood Cocktail",
+      time: "07:00-11:00",
+      img:
+        "http://103.153.72.195:8080/c/i/36e5c3b16ad18c40f466015f47255fe9.jpg",
+      imgDetails:
+        "http://103.153.72.195:8080/c/i/36e5c3b16ad18c40f466015f47255fe9.jpg",
+      type: "subcategory",
+      description:
+        "Three Buttermilk Pancakes loaded with pecans and served with real Butter and a warm bottle of 100% Pure Natural Syrup.",
+      tags: ["Vegan"],
+      price: 18,
+      parentId: "dining002",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining00203",
+      title: "Marinated Olives",
+      time: "07:00-11:00",
+      img:
+        "http://103.153.72.195:8080/c/i/6c08f6f6c84d224ab007da8cc36ca7b5.jpg",
+      imgDetails:
+        "http://103.153.72.195:8080/c/i/6c08f6f6c84d224ab007da8cc36ca7b5.jpg",
+      type: "subcategory",
+      description:
+        "Four slices of our own Sourdough Bread (regular or whole-wheat) dipped in egg then grilled to perfection. Served with any Fruit Topping or 100% Pure Natural Syrup.",
+      tags: ["French Cuisine", "Vegan"],
+      price: 11,
+      parentId: "dining002",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining00204",
+      title: "Fried Mozzarella",
+      time: "07:00-11:00",
+      img:
+        "http://103.153.72.195:8080/c/i/cfe16cd56edb929f6c75c6c414593892.jpg",
+      imgDetails:
+        "http://103.153.72.195:8080/c/i/cfe16cd56edb929f6c75c6c414593892.jpg",
+      type: "subcategory",
+      description:
+        "Three buttermilk biscuits with sawmill gravy and thick-sliced bacon.",
+      tags: ["French Cuisine"],
+      price: 16,
+      parentId: "dining002",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining003",
+      category: [],
+      title: "Salads",
+      time: "07:00-23:00",
+      img:
+        "http://103.153.72.195:8080/c/i/e91ab8d57beecff16499268c3ee5f7cd.jpg",
+      type: "category",
+      parentId: "dining",
+    },
+    {
+      id: "dining00301",
+      title: "Russian Salad",
+      time: "",
+      img:
+        "http://103.153.72.195:8080/c/i/c80f87aa09ca99f99bdc2750e9567f81.jpg",
+      imgDetails:
+        "http://103.153.72.195:8080/c/i/c80f87aa09ca99f99bdc2750e9567f81.jpg",
+      type: "subcategory",
+      description:
+        "Our Oatmeal is served warm with your choice of Fried Apples, Pecans, Raisins, Fresh Sliced Bananas or 100% Pure Natural Syrup.",
+      tags: [],
+      price: 6,
+      parentId: "dining003",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "chooseOptions",
+      orderOptions: [
+        {
+          name: "Vodka",
+          price: 10,
+          type: "yesNo",
+          value: false,
+        },
+      ],
+    },
+    {
+      id: "dining00302",
+      title: "Greek Salad",
+      time: "",
+      img:
+        "http://103.153.72.195:8080/c/i/c01a73cddcbc9965dc3918af8a800f86.jpg",
+      imgDetails:
+        "http://103.153.72.195:8080/c/i/c01a73cddcbc9965dc3918af8a800f86.jpg",
+      type: "subcategory",
+      description:
+        "Three Buttermilk Pancakes loaded with pecans and served with real Butter and a warm bottle of 100% Pure Natural Syrup.",
+      tags: ["Greek Cuisine", "Vegan"],
+      price: 11,
+      parentId: "dining003",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining00303",
+      title: "Caesar Salad Supreme",
+      time: "",
+      img:
+        "http://103.153.72.195:8080/c/i/c2cf6386f29d18f33b83d465c46a26e3.jpg",
+      imgDetails:
+        "http://103.153.72.195:8080/c/i/c2cf6386f29d18f33b83d465c46a26e3.jpg",
+      type: "subcategory",
+      description:
+        "Four slices of our own Sourdough Bread (regular or whole-wheat) dipped in egg then grilled to perfection. Served with any Fruit Topping or 100% Pure Natural Syrup.",
+      tags: ["Contains Chiken"],
+      price: 8,
+      parentId: "dining003",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "chooseOptions",
+      orderOptions: [
+        {
+          name: "Additional Parmesan (10g)",
+          price: 1,
+          type: "quantity",
+          value: 0,
+        },
+      ],
+    },
+    {
+      id: "dining00304",
+      title: "Avocada Salad",
+      time: "",
+      img:
+        "http://103.153.72.195:8080/c/i/00d6112ed1292bf20105093c240b04d9.jpg",
+      imgDetails:
+        "http://103.153.72.195:8080/c/i/00d6112ed1292bf20105093c240b04d9.jpg",
+      type: "subcategory",
+      description:
+        "Three buttermilk biscuits with sawmill gravy and thick-sliced bacon.",
+      tags: ["French Cuisine"],
+      price: 9,
+      parentId: "dining003",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "chooseOptions",
+      orderOptions: [
+        {
+          name: "Olive Oil",
+          price: 1,
+          type: "yesNo",
+          value: false,
+        },
+      ],
+    },
+    {
+      id: "dining00305",
+      title: "Tuna Salad",
+      time: "",
+      img:
+        "http://103.153.72.195:8080/c/i/a14f8c334e260b46e546dcd072dca234.jpg",
+      imgDetails:
+        "http://103.153.72.195:8080/c/i/a14f8c334e260b46e546dcd072dca234.jpg",
+      type: "subcategory",
+      description:
+        "Three buttermilk biscuits with sawmill gravy and thick-sliced bacon.",
+      tags: ["French Cuisine"],
+      price: 13,
+      parentId: "dining003",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining004",
+      category: [],
+      title: "Soups",
+      time: "10:00-20:00",
+      img:
+        "http://103.153.72.195:8080/c/i/42ce7e8e9f153fbb4c9c333c0194af65.jpg",
+      type: "category",
+      parentId: "dining",
+    },
+    {
+      id: "dining00401",
+      title: "Oatmeal Breakfast",
+      time: "07:00-11:00",
+      img:
+        "http://103.153.72.195:8080/c/i/044dd29d8fee0db299ddf034471e1ea6.jpg",
+      type: "subcategory",
+      description:
+        "Our Oatmeal is served warm with your choice of Fried Apples, Pecans, Raisins, Fresh Sliced Bananas or 100% Pure Natural Syrup.",
+      tags: ["Vegan"],
+      price: 16,
+      parentId: "dining004",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining00402",
+      title: "Pecan Pancakes",
+      time: "07:00-11:00",
+      img:
+        "http://103.153.72.195:8080/c/i/e6f9d2c47cfcd623d2000a3ac2ec61d7.jpg",
+      type: "subcategory",
+      description:
+        "Three Buttermilk Pancakes loaded with pecans and served with real Butter and a warm bottle of 100% Pure Natural Syrup.",
+      tags: ["Vegan"],
+      price: 8,
+      parentId: "dining004",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining00403",
+      title: "French Toast",
+      time: "07:00-11:00",
+      img:
+        "http://103.153.72.195:8080/c/i/5ffd16b6c4b133657005fd2ba16ffdc3.jpg",
+      type: "subcategory",
+      description:
+        "Four slices of our own Sourdough Bread (regular or whole-wheat) dipped in egg then grilled to perfection. Served with any Fruit Topping or 100% Pure Natural Syrup.",
+      tags: ["French Cuisine", "Vegan"],
+      price: 11,
+      parentId: "dining004",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining00404",
+      title: "Biscuits n' Gravy with Bacon",
+      time: "07:00-11:00",
+      img:
+        "http://103.153.72.195:8080/c/i/5f7a6301720858d14164d7a09f0ce417.jpg",
+      type: "subcategory",
+      description:
+        "Three buttermilk biscuits with sawmill gravy and thick-sliced bacon.",
+      tags: ["French Cuisine"],
+      price: 16,
+      parentId: "dining004",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining005",
+      category: [],
+      title: "Mains",
+      time: "10:00-23:00",
+      img:
+        "http://103.153.72.195:8080/c/i/009808affb6c6322dee201c0dc5739d5.jpg",
+      type: "category",
+      parentId: "dining",
+    },
+    {
+      id: "dining00501",
+      title: "Oatmeal Breakfast",
+      time: "07:00-11:00",
+      img:
+        "http://103.153.72.195:8080/c/i/044dd29d8fee0db299ddf034471e1ea6.jpg",
+      type: "subcategory",
+      description:
+        "Our Oatmeal is served warm with your choice of Fried Apples, Pecans, Raisins, Fresh Sliced Bananas or 100% Pure Natural Syrup.",
+      tags: ["Vegan"],
+      price: 16,
+      parentId: "dining005",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining00502",
+      title: "Pecan Pancakes",
+      time: "07:00-11:00",
+      img:
+        "http://103.153.72.195:8080/c/i/e6f9d2c47cfcd623d2000a3ac2ec61d7.jpg",
+      type: "subcategory",
+      description:
+        "Three Buttermilk Pancakes loaded with pecans and served with real Butter and a warm bottle of 100% Pure Natural Syrup.",
+      tags: ["Vegan"],
+      price: 8,
+      parentId: "dining005",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining00503",
+      title: "French Toast",
+      time: "07:00-11:00",
+      img:
+        "http://103.153.72.195:8080/c/i/5ffd16b6c4b133657005fd2ba16ffdc3.jpg",
+      type: "subcategory",
+      description:
+        "Four slices of our own Sourdough Bread (regular or whole-wheat) dipped in egg then grilled to perfection. Served with any Fruit Topping or 100% Pure Natural Syrup.",
+      tags: ["French Cuisine", "Vegan"],
+      price: 11,
+      parentId: "dining005",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining00504",
+      title: "Biscuits n' Gravy with Bacon",
+      time: "07:00-11:00",
+      img:
+        "http://103.153.72.195:8080/c/i/5f7a6301720858d14164d7a09f0ce417.jpg",
+      type: "subcategory",
+      description:
+        "Three buttermilk biscuits with sawmill gravy and thick-sliced bacon.",
+      tags: ["French Cuisine"],
+      price: 16,
+      parentId: "dining005",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining006",
+      category: [],
+      title: "Desserts",
+      time: "24 hours",
+      img:
+        "http://103.153.72.195:8080/c/i/e2ae3e583ed772713686864079fb6281.jpg",
+      type: "category",
+      parentId: "dining",
+    },
+    {
+      id: "dining00601",
+      title: "Oatmeal Breakfast",
+      time: "07:00-11:00",
+      img:
+        "http://103.153.72.195:8080/c/i/044dd29d8fee0db299ddf034471e1ea6.jpg",
+      type: "subcategory",
+      description:
+        "Our Oatmeal is served warm with your choice of Fried Apples, Pecans, Raisins, Fresh Sliced Bananas or 100% Pure Natural Syrup.",
+      tags: ["Vegan"],
+      price: 16,
+      parentId: "dining006",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining00602",
+      title: "Pecan Pancakes",
+      time: "07:00-11:00",
+      img:
+        "http://103.153.72.195:8080/c/i/e6f9d2c47cfcd623d2000a3ac2ec61d7.jpg",
+      type: "subcategory",
+      description:
+        "Three Buttermilk Pancakes loaded with pecans and served with real Butter and a warm bottle of 100% Pure Natural Syrup.",
+      tags: ["Vegan"],
+      price: 8,
+      parentId: "dining006",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining00603",
+      title: "French Toast",
+      time: "07:00-11:00",
+      img:
+        "http://103.153.72.195:8080/c/i/5ffd16b6c4b133657005fd2ba16ffdc3.jpg",
+      type: "subcategory",
+      description:
+        "Four slices of our own Sourdough Bread (regular or whole-wheat) dipped in egg then grilled to perfection. Served with any Fruit Topping or 100% Pure Natural Syrup.",
+      tags: ["French Cuisine", "Vegan"],
+      price: 11,
+      parentId: "dining006",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining00604",
+      title: "Biscuits n' Gravy with Bacon",
+      time: "07:00-11:00",
+      img:
+        "http://103.153.72.195:8080/c/i/5f7a6301720858d14164d7a09f0ce417.jpg",
+      type: "subcategory",
+      description:
+        "Three buttermilk biscuits with sawmill gravy and thick-sliced bacon.",
+      tags: ["French Cuisine"],
+      price: 16,
+      parentId: "dining006",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining009",
+      category: [],
+      title: "Drinks",
+      time: "24 hours",
+      img:
+        "http://103.153.72.195:8080/c/i/e6d40d613e7995c63af20a358ae58ffe.jpg",
+      type: "category",
+      parentId: "dining",
+    },
+    {
+      id: "dining00901",
+      title: "Oatmeal Breakfast",
+      time: "07:00-11:00",
+      img:
+        "http://103.153.72.195:8080/c/i/044dd29d8fee0db299ddf034471e1ea6.jpg",
+      type: "subcategory",
+      description:
+        "Our Oatmeal is served warm with your choice of Fried Apples, Pecans, Raisins, Fresh Sliced Bananas or 100% Pure Natural Syrup.",
+      tags: ["Vegan"],
+      price: 16,
+      parentId: "dining009",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining00902",
+      title: "Pecan Pancakes",
+      time: "07:00-11:00",
+      img:
+        "http://103.153.72.195:8080/c/i/e6f9d2c47cfcd623d2000a3ac2ec61d7.jpg",
+      type: "subcategory",
+      description:
+        "Three Buttermilk Pancakes loaded with pecans and served with real Butter and a warm bottle of 100% Pure Natural Syrup.",
+      tags: ["Vegan"],
+      price: 8,
+      parentId: "dining009",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining00903",
+      title: "French Toast",
+      time: "07:00-11:00",
+      img:
+        "http://103.153.72.195:8080/c/i/5ffd16b6c4b133657005fd2ba16ffdc3.jpg",
+      type: "subcategory",
+      description:
+        "Four slices of our own Sourdough Bread (regular or whole-wheat) dipped in egg then grilled to perfection. Served with any Fruit Topping or 100% Pure Natural Syrup.",
+      tags: ["French Cuisine", "Vegan"],
+      price: 11,
+      parentId: "dining009",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining00904",
+      title: "Biscuits n' Gravy with Bacon",
+      time: "07:00-11:00",
+      img:
+        "http://103.153.72.195:8080/c/i/5f7a6301720858d14164d7a09f0ce417.jpg",
+      type: "subcategory",
+      description:
+        "Three buttermilk biscuits with sawmill gravy and thick-sliced bacon.",
+      tags: ["French Cuisine"],
+      price: 16,
+      parentId: "dining009",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining007",
+      category: [],
+      title: "Hot Drinks",
+      time: "24 hours",
+      img:
+        "http://103.153.72.195:8080/c/i/1a54f71a6a81c8a836b50f6b80b8470d.jpg",
+      type: "category",
+      parentId: "dining",
+    },
+    {
+      id: "dining00701",
+      title: "Oatmeal Breakfast",
+      time: "07:00-11:00",
+      img:
+        "http://103.153.72.195:8080/c/i/044dd29d8fee0db299ddf034471e1ea6.jpg",
+      type: "subcategory",
+      description:
+        "Our Oatmeal is served warm with your choice of Fried Apples, Pecans, Raisins, Fresh Sliced Bananas or 100% Pure Natural Syrup.",
+      tags: ["Vegan"],
+      price: 16,
+      parentId: "dining007",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining00702",
+      title: "Pecan Pancakes",
+      time: "07:00-11:00",
+      img:
+        "http://103.153.72.195:8080/c/i/e6f9d2c47cfcd623d2000a3ac2ec61d7.jpg",
+      type: "subcategory",
+      description:
+        "Three Buttermilk Pancakes loaded with pecans and served with real Butter and a warm bottle of 100% Pure Natural Syrup.",
+      tags: ["Vegan"],
+      price: 8,
+      parentId: "dining007",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining00703",
+      title: "French Toast",
+      time: "07:00-11:00",
+      img:
+        "http://103.153.72.195:8080/c/i/5ffd16b6c4b133657005fd2ba16ffdc3.jpg",
+      type: "subcategory",
+      description:
+        "Four slices of our own Sourdough Bread (regular or whole-wheat) dipped in egg then grilled to perfection. Served with any Fruit Topping or 100% Pure Natural Syrup.",
+      tags: ["French Cuisine", "Vegan"],
+      price: 11,
+      parentId: "dining007",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining00704",
+      title: "Biscuits n' Gravy with Bacon",
+      time: "07:00-11:00",
+      img:
+        "http://103.153.72.195:8080/c/i/5f7a6301720858d14164d7a09f0ce417.jpg",
+      type: "subcategory",
+      description:
+        "Three buttermilk biscuits with sawmill gravy and thick-sliced bacon.",
+      tags: ["French Cuisine"],
+      price: 16,
+      parentId: "dining007",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining008",
+      category: [],
+      title: "Alcohol",
+      time: "",
+      img:
+        "http://103.153.72.195:8080/c/i/e03c22b7d4f2e6df5821c7d3d1fd2c29.jpg",
+      type: "category",
+      parentId: "dining",
+    },
+    {
+      id: "dining00801",
+      title: "Cocktails",
+      time: "24 hours",
+      img:
+        "http://103.153.72.195:8080/c/i/4fd3f963c02c807ac0ef047000b1fb4b.jpg",
+      type: "category",
+      parentId: "dining008",
+    },
+    {
+      id: "dining0080101",
+      title: "Oatmeal Breakfast",
+      time: "24 hours",
+      img:
+        "http://103.153.72.195:8080/c/i/044dd29d8fee0db299ddf034471e1ea6.jpg",
+      type: "subcategory",
+      parentId: "dining00801",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining0080102",
+      title: "Pecan Pancakes",
+      time: "24 hours",
+      img:
+        "http://103.153.72.195:8080/c/i/e6f9d2c47cfcd623d2000a3ac2ec61d7.jpg",
+      type: "subcategory",
+      parentId: "dining00801",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining0080103",
+      title: "French Toast",
+      time: "24 hours",
+      img:
+        "http://103.153.72.195:8080/c/i/5ffd16b6c4b133657005fd2ba16ffdc3.jpg",
+      type: "subcategory",
+      parentId: "dining00801",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining0080104",
+      title: "Biscuits n' Gravy with Bacon",
+      time: "24 hours",
+      img:
+        "http://103.153.72.195:8080/c/i/5f7a6301720858d14164d7a09f0ce417.jpg",
+      type: "subcategory",
+      parentId: "dining00801",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining00802",
+      title: "Beer",
+      time: "24 hours",
+      img:
+        "http://103.153.72.195:8080/c/i/b60db0fe80104ede07c4d04ab0e83f0c.jpg",
+      type: "category",
+      parentId: "dining008",
+    },
+    {
+      id: "dining0080201",
+      title: "Oatmeal Breakfast",
+      time: "24 hours",
+      img:
+        "http://103.153.72.195:8080/c/i/044dd29d8fee0db299ddf034471e1ea6.jpg",
+      type: "subcategory",
+      parentId: "dining00802",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining0080202",
+      title: "Pecan Pancakes",
+      time: "24 hours",
+      img:
+        "http://103.153.72.195:8080/c/i/e6f9d2c47cfcd623d2000a3ac2ec61d7.jpg",
+      type: "subcategory",
+      parentId: "dining00802",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining0080203",
+      title: "French Toast",
+      time: "24 hours",
+      img:
+        "http://103.153.72.195:8080/c/i/5ffd16b6c4b133657005fd2ba16ffdc3.jpg",
+      type: "subcategory",
+      parentId: "dining00802",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining0080204",
+      title: "Biscuits n' Gravy with Bacon",
+      time: "24 hours",
+      img:
+        "http://103.153.72.195:8080/c/i/5f7a6301720858d14164d7a09f0ce417.jpg",
+      type: "subcategory",
+      parentId: "dining00802",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining00803",
+      title: "Wine",
+      time: "24 hours",
+      img:
+        "http://103.153.72.195:8080/c/i/ac29c66f2d81d644571fb40944f31e35.jpg",
+      type: "category",
+      parentId: "dining008",
+    },
+    {
+      id: "dining0080301",
+      title: "Oatmeal Breakfast",
+      time: "24 hours",
+      img:
+        "http://103.153.72.195:8080/c/i/044dd29d8fee0db299ddf034471e1ea6.jpg",
+      type: "subcategory",
+      parentId: "dining00803",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining0080302",
+      title: "Pecan Pancakes",
+      time: "24 hours",
+      img:
+        "http://103.153.72.195:8080/c/i/e6f9d2c47cfcd623d2000a3ac2ec61d7.jpg",
+      type: "subcategory",
+      parentId: "dining00803",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining0080303",
+      title: "French Toast",
+      time: "24 hours",
+      img:
+        "http://103.153.72.195:8080/c/i/5ffd16b6c4b133657005fd2ba16ffdc3.jpg",
+      type: "subcategory",
+      parentId: "dining00803",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining0080304",
+      title: "Biscuits n' Gravy with Bacon",
+      time: "24 hours",
+      img:
+        "http://103.153.72.195:8080/c/i/5f7a6301720858d14164d7a09f0ce417.jpg",
+      type: "subcategory",
+      parentId: "dining00803",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining00804",
+      title: "Whiskey",
+      time: "24 hours",
+      img:
+        "http://103.153.72.195:8080/c/i/183569bb20b8f5c4e00b071baefadeb8.jpg",
+      type: "category",
+      parentId: "dining008",
+    },
+    {
+      id: "dining0080401",
+      title: "Oatmeal Breakfast",
+      time: "24 hours",
+      img:
+        "http://103.153.72.195:8080/c/i/044dd29d8fee0db299ddf034471e1ea6.jpg",
+      type: "subcategory",
+      parentId: "dining00804",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining0080402",
+      title: "Pecan Pancakes",
+      time: "24 hours",
+      img:
+        "http://103.153.72.195:8080/c/i/e6f9d2c47cfcd623d2000a3ac2ec61d7.jpg",
+      type: "subcategory",
+      parentId: "dining00804",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining0080403",
+      title: "French Toast",
+      time: "24 hours",
+      img:
+        "http://103.153.72.195:8080/c/i/5ffd16b6c4b133657005fd2ba16ffdc3.jpg",
+      type: "subcategory",
+      parentId: "dining00804",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+    {
+      id: "dining0080404",
+      title: "Biscuits n' Gravy with Bacon",
+      time: "24 hours",
+      img:
+        "http://103.153.72.195:8080/c/i/5f7a6301720858d14164d7a09f0ce417.jpg",
+      type: "subcategory",
+      parentId: "dining00804",
+      orderQuantity: 1,
+      orderUnit: "pcs",
+      orderType: "continue",
+    },
+  ];
+
   window.wakeUpCallTrack = [
     {
       title: "Inspiration Morning",
@@ -885,19 +1813,7 @@ var vm = {};
   };
 
   vm.categoryVM = function(route, param) {
-    console.log(param);
-    $("#categoryName").text(categories[param.categoryId]);
-
-    $("#sub-categories").empty();
-    subCategories[param.categoryId].forEach(function(item, index) {
-      var href = $.router.href("subCategoryDetail", {
-        categoryId: param.categoryId,
-        subCategoryId: index,
-      });
-      $("#sub-categories").append(
-        "<li><a href='" + href + "'>" + item + "</a></li>"
-      );
-    });
+    window.CategoryModule.renderCategory(param.categoryId);
   };
 
   vm.productVM = function(route, param) {
