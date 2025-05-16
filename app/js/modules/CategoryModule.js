@@ -55,29 +55,9 @@ $(function() {
             }
           }
         } else if (keyCode === window.keyboard.ENTER) {
-          $("#connectivityAlert .site-modal-title").text(
-            i18njs.get(
-              window.currentCategory[
-                window.categoryKeyboard.cursorX +
-                  window.categoryKeyboard.cursorY * this.itemInRow
-              ].name
-            )
-          );
-          $("#connectivityAlert .intro").text(
-            i18njs.get(
-              window.currentCategory[
-                window.categoryKeyboard.cursorX +
-                  window.categoryKeyboard.cursorY * this.itemInRow
-              ].content
-            )
-          );
-          $("#connectivityAlert").toggle();
+          // go to subcategory
         } else if (window.keyboard.BACK.includes(keyCode)) {
-          if ($("#connectivityAlert").is(":visible")) {
-            $("#connectivityAlert").toggle();
-          } else {
-            window.location.href = "#/";
-          }
+          window.location.href = "#/";
         }
 
         this.renderCursor();
