@@ -1,5 +1,13 @@
 $(function() {
   var AppModule = {
+    fullscreen: function() {
+      var clientWidth = document.documentElement.clientWidth;
+      if (clientWidth >= 1920) {
+        $("html").css({
+          zoom: clientWidth / 1280,
+        });
+      }
+    },
     renderDynamicData: function() {
       $("#clock").text(
         new Date().toLocaleTimeString("en-US", {
@@ -17,6 +25,7 @@ $(function() {
     },
   };
 
+  AppModule.fullscreen();
   AppModule.renderDynamicData();
   setInterval(function() {
     AppModule.renderDynamicData();

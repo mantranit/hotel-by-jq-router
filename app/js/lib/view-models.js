@@ -1814,6 +1814,7 @@ var vm = {};
 
   vm.categoryVM = function(route, param) {
     window.CategoryModule.renderCategory(param.categoryId);
+    window.CategoryModule.renderCursor();
   };
 
   vm.productVM = function(route, param) {

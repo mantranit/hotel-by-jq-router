@@ -4,18 +4,18 @@ $(function() {
     cursorY: 0,
   };
   var CategoryModule = {
+    itemInRow: 2,
     handleKeyDown: function(event) {
-      var itemInARow = 2;
       const keyCode = event.keyCode || event.which;
       if ($("#categoryPage").is(":visible")) {
         if (keyCode === window.keyboard.RIGHT) {
           var nextCursorX = Math.min(
             window.categoryKeyboard.cursorX + 1,
-            itemInARow - 1
+            this.itemInRow - 1
           );
           if (
-            window.sourceList[
-              nextCursorX + window.categoryKeyboard.cursorY * itemInARow
+            window.currentCategory[
+              nextCursorX + window.categoryKeyboard.cursorY * this.itemInRow
             ]
           ) {
             window.categoryKeyboard.cursorX = nextCursorX;
@@ -33,18 +33,20 @@ $(function() {
         } else if (keyCode === window.keyboard.BOTTOM) {
           var nextCursorY = Math.min(
             window.categoryKeyboard.cursorY + 1,
-            Math.ceil(window.sourceList.length / itemInARow) - 1
+            Math.ceil(window.currentCategory.length / this.itemInRow) - 1
           );
           if (
-            window.sourceList[
-              window.categoryKeyboard.cursorX + nextCursorY * itemInARow
+            window.currentCategory[
+              window.categoryKeyboard.cursorX + nextCursorY * this.itemInRow
             ]
           ) {
             window.categoryKeyboard.cursorY = nextCursorY;
           } else {
             if (
-              window.sourceList[
-                window.categoryKeyboard.cursorX - 1 + nextCursorY * itemInARow
+              window.currentCategory[
+                window.categoryKeyboard.cursorX -
+                  1 +
+                  nextCursorY * this.itemInRow
               ]
             ) {
               window.categoryKeyboard.cursorX =
@@ -55,17 +57,17 @@ $(function() {
         } else if (keyCode === window.keyboard.ENTER) {
           $("#connectivityAlert .site-modal-title").text(
             i18njs.get(
-              window.sourceList[
+              window.currentCategory[
                 window.categoryKeyboard.cursorX +
-                  window.categoryKeyboard.cursorY * itemInARow
+                  window.categoryKeyboard.cursorY * this.itemInRow
               ].name
             )
           );
           $("#connectivityAlert .intro").text(
             i18njs.get(
-              window.sourceList[
+              window.currentCategory[
                 window.categoryKeyboard.cursorX +
-                  window.categoryKeyboard.cursorY * itemInARow
+                  window.categoryKeyboard.cursorY * this.itemInRow
               ].content
             )
           );
@@ -78,24 +80,59 @@ $(function() {
           }
         }
 
-        this.renderCategory();
+        this.renderCursor();
       }
     },
 
-    renderCategory: function(categoryId) {
+    renderCursor: function() {
       $("#categoryCursor").css({
         transform: `translate(${window.categoryKeyboard.cursorX *
           (390 + 20)}px, ${window.categoryKeyboard.cursorY * (158 + 20)}px)`,
       });
 
+      var categoryOuter = $("#categoryContent").get(0);
+      var categoryInner = $("#categoryList").get(0);
+      if (categoryOuter.clientHeight >= categoryInner.clientHeight) {
+        $("#categoryContent").css({
+          "overflow-y": "hidden",
+        });
+      } else {
+        $("#categoryContent").css({
+          "overflow-y": "scroll",
+        });
+      }
+      var children = categoryInner.children;
+
+      var child =
+        children[
+          window.categoryKeyboard.cursorX +
+            window.categoryKeyboard.cursorY * this.itemInRow
+        ];
+      if (child) {
+        var top = child.offsetTop;
+        var bottom = top + child.clientHeight;
+        var outerTop = categoryOuter.scrollTop;
+        var outerBottom = outerTop + categoryOuter.clientHeight;
+        if (top < outerTop) {
+          categoryOuter.scrollTop = top - 3;
+        } else if (bottom > outerBottom) {
+          categoryOuter.scrollTop = bottom - categoryOuter.clientHeight;
+        }
+      }
+    },
+
+    renderCategory: function(categoryId) {
+      window.currentCategory = window.dining.filter(
+        (item) => item.parentId === categoryId
+      );
+
+      $("#categoryTitle").text("Dining");
+
       $("#categoryList").empty();
-      window.dining
-        .filter((item) => item.parentId === categoryId)
-        .forEach(function(item, index) {
-          console.log(item);
-          $("#categoryList").append(
-            `<div class="category-item">
-            <div class="category-item-inner" style="width: 390px; height: 158px;">
+      window.currentCategory.forEach(function(item, index) {
+        $("#categoryList").append(
+          `<div class="category-item">
+            <div class="category-item-inner">
               <img alt="" width="390" height="158" src="${item.img}">
               <div class="brief">
                 <p class="title">${item.title}</p>
@@ -103,8 +140,8 @@ $(function() {
               </div>
             </div>
           </div>`
-          );
-        });
+        );
+      });
     },
   };
 
