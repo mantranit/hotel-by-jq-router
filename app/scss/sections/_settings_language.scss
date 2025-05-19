@@ -39,13 +39,11 @@
     transition: all 0.2s ease-in-out;
   }
   .setting-option {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     padding: 12px 17px;
     height: 54px;
     .icon {
       display: none;
+      float: right;
     }
     &.active .icon {
       display: inline-block;

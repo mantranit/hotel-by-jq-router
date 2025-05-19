@@ -13,23 +13,27 @@
     animation: fadeIn 0.3s ease-in 1;
   }
   .right-bottom-buttons {
-    display: flex;
+    overflow: hidden;
   }
   button {
     color: white;
-    display: flex;
     align-items: center;
     font-size: 24px;
     background: none;
     border: none;
-    display: flex;
     align-items: center;
+    float: left;
     .icon {
       display: block;
       width: 28px;
       height: 24px;
       border-radius: 6px;
       margin-right: 8px;
+      margin-top: 6px;
+      float: left;
+    }
+    .text {
+      float: left;
     }
     + button {
       margin-left: 30px;

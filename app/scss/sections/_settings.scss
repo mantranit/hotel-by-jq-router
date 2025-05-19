@@ -7,9 +7,7 @@
     padding: 3px 37px 3px 3px;
     position: relative;
     .settings-content-inner {
-      display: flex;
-      // gap: 20px;
-      flex-direction: column;
+      overflow: hidden;
     }
   }
 }
@@ -22,9 +20,6 @@
     padding-bottom: 5px;
   }
   .setting-option {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     padding: 12px 17px;
     border: 1px solid white;
     border-radius: 8px;

@@ -12,35 +12,36 @@
   left: 0;
   width: 100%;
   z-index: 100;
-  display: flex;
-  justify-content: space-between;
   transition: all 0.2s ease-in;
+  overflow: hidden;
   .logo {
     padding: 18px 28px;
+    float: left;
     img {
       height: 48px;
       width: auto;
     }
   }
   .generalInfo {
-    display: flex;
-    align-items: center;
+    float: right;
     font-size: 23px;
     padding-right: 28px;
-    margin-top: -16px;
+    padding-top: 20px;
     > div {
       margin-left: 20px;
+      float: left;
     }
     sup {
       line-height: 1;
     }
     .clock-area {
-      display: flex;
       align-items: center;
       .icon {
         width: 24px;
-        transform: translateY(3px);
+        // transform: translateY(3px);
         margin-right: 5px;
+        margin-top: 3px;
+        float: left;
       }
       .separate {
         animation: tiktak 500ms ease-in alternate infinite;
@@ -53,8 +54,6 @@
     top: 60px;
     font-size: 28px;
     line-height: 28px;
-    display: flex;
-    align-items: center;
     gap: 6px;
   }
 }

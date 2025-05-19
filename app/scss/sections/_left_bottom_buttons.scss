@@ -3,20 +3,14 @@
   left: 28px;
   bottom: 22px;
   .left-bottom-buttons {
-    display: flex;
-    align-items: center;
-    // gap: 20px;
+    overflow: hidden;
   }
   button {
     color: white;
-    display: flex;
-    align-items: center;
-    // gap: 8px;
     font-size: 24px;
     background: none;
     border: none;
-    display: flex;
-    align-items: center;
+    float: left;
     + button {
       margin-left: 20px;
     }
@@ -25,13 +19,18 @@
       width: 28px;
       height: 24px;
       margin-right: 8px;
+      margin-top: 6px;
       border-radius: 6px;
+      float: left;
       &.icon-double {
         width: 56px;
       }
       svg {
         fill: white;
       }
+    }
+    .text {
+      float: left;
     }
   }
 }

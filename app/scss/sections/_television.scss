@@ -6,22 +6,22 @@
     font-size: 42px;
   }
   .television-container {
-    display: flex;
-    justify-content: center;
-    // gap: 34px;
+    overflow: hidden;
     .television-left {
+      float: left;
       width: 766px;
+      margin-left: 25px;
       margin-right: 34px;
     }
     .television-right {
       width: 430px;
+      float: left;
     }
   }
   .television-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    overflow: hidden;
     .television-title {
+      float: left;
       font-size: 24px;
       color: #fff;
       text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
@@ -39,8 +39,8 @@
       }
     }
     .television-filters {
-      display: flex;
-      // gap: 20px;
+      float: right;
+      padding-top: 10px;
       padding-right: 48px;
       .television-filter-category {
         width: 300px;
@@ -86,9 +86,6 @@
     }
     .television-list {
       overflow: hidden;
-      display: flex;
-      // gap: 36px;
-      flex-wrap: wrap;
     }
   }
   .television-right-content {
@@ -97,6 +94,7 @@
 }
 
 .television-item {
+  float: left;
   width: 152px;
   height: 123px;
   margin: 36px 0 0 36px;
@@ -158,8 +156,6 @@
     }
   }
   .filter-channels-inner {
-    display: flex;
-    flex-direction: column;
     overflow: hidden;
   }
   .filter-channels-item {
@@ -168,7 +164,11 @@
     font-size: 22px;
     color: white;
     border: 3px solid transparent;
+    .text {
+      float: left;
+    }
     .count {
+      float: right;
       font-size: 20px;
       color: rgba(255, 255, 255, 0.3);
     }
@@ -190,9 +190,7 @@
       }
     }
     > div {
-      display: flex;
-      justify-content: space-between;
-      // gap: 10px;
+      overflow: hidden;
     }
     .icon {
       display: none;
@@ -270,26 +268,25 @@
     margin-top: 20px;
     display: none;
     .television-control-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      overflow: hidden;
     }
     button {
       color: white;
-      display: flex;
-      align-items: center;
-      // gap: 5px;
       font-size: 24px;
       background: none;
       border: none;
-      display: flex;
-      align-items: center;
+      float: left;
+      + button {
+        margin-left: 382px;
+      }
       .icon {
         display: block;
         width: 28px;
         height: 24px;
-        margin-right: 5px;
+        margin-right: 8px;
         border-radius: 6px;
+        margin-top: 6px;
+        float: left;
         &.icon-double {
           width: 56px;
         }
