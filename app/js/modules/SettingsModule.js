@@ -18,13 +18,13 @@ $(function() {
           );
         } else if (keyCode === window.keyboard.ENTER) {
           if (window.settingsKeyboard.cursor === 0) {
-            window.location.href = "#/settings/language";
+            $.router.onhashchange("#/settings/language");
           }
           if (window.settingsKeyboard.cursor === 1) {
-            window.location.href = "#/settings/parental-lock";
+            $.router.onhashchange("#/settings/parental-lock");
           }
         } else if (window.keyboard.BACK.includes(keyCode)) {
-          window.location.href = "#/";
+          $.router.onhashchange("#/");
         }
 
         this.renderOptions();

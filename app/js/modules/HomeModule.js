@@ -29,7 +29,7 @@ $(function() {
         } else if (keyCode === window.keyboard.ENTER) {
           const currentItem = window.menu[window.homeKeyboard.currentIndex];
           console.log(currentItem.path, "#" + currentItem.path);
-          window.location.href = "#" + currentItem.path;
+          $.router.onhashchange("#" + currentItem.path);
         }
 
         this.renderMenu();

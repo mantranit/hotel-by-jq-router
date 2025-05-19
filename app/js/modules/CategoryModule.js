@@ -57,7 +57,7 @@ $(function() {
         } else if (keyCode === window.keyboard.ENTER) {
           // go to subcategory
         } else if (window.keyboard.BACK.includes(keyCode)) {
-          window.location.href = "#/";
+          $.router.onhashchange("#/");
         }
 
         this.renderCursor();

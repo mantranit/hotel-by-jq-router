@@ -27,7 +27,7 @@ $(function() {
               window.wakeUpCallKeyboard.cursor;
           }
         } else if (window.keyboard.BACK.includes(keyCode)) {
-          window.location.href = "#/";
+          $.router.onhashchange("#/");
         }
 
         this.renderTrack();

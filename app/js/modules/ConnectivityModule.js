@@ -76,7 +76,7 @@ $(function() {
           if ($("#connectivityAlert").is(":visible")) {
             $("#connectivityAlert").toggle();
           } else {
-            window.location.href = "#/";
+            $.router.onhashchange("#/");
           }
         }
 

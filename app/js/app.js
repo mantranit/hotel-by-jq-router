@@ -1,5 +1,6 @@
 import "../scss/app.scss";
 
+import "./modules/UIModule";
 import "./modules/LocaleModule";
 import "./modules/HomeModule";
 import "./modules/TelevisionModule";

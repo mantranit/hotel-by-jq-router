@@ -76,7 +76,7 @@ $(function() {
             });
             window.feedbackKeyboard.cursor = 0;
             window.feedbackKeyboard.cursorSelect = 0;
-            window.location.href = "#/";
+            $.router.onhashchange("#/");
             return;
           } else if (
             window.feedbackKeyboard.cursor === window.feedbackList.length
@@ -106,7 +106,7 @@ $(function() {
             window.feedbackList.length
           );
         } else if (window.keyboard.BACK.includes(keyCode)) {
-          window.location.href = "#/";
+          $.router.onhashchange("#/");
         }
 
         this.renderFeedback();

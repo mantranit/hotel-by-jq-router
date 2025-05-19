@@ -81,7 +81,9 @@
         url = s.href(routeName, params);
       if (url) {
         s.paramService.setParams(params);
-        window.location.assign(url);
+        // window.location.assign(url);
+        // $("#hashchange").val(url);
+        s.onhashchange(url);
       }
       return s;
     };
@@ -141,6 +143,7 @@
      * @return {object} this
      */
     s.onhashchange = function(hash) {
+      $.cookie("hash", hash);
       var s = this,
         matchedRoute = s.match(hash),
         matchedParams;
@@ -207,22 +210,22 @@
     s.run = function(viewSelector, routeName, params) {
       var s = this;
       if (isFirstTime) {
-        if (
-          window.location.pathname.lastIndexOf(".") === -1 &&
-          window.location.pathname.substr(-1) !== "/"
-        ) {
-          window.location.pathname = window.location.pathname + "/";
-          return;
-        }
+        // if (
+        //   window.location.pathname.lastIndexOf(".") === -1 &&
+        //   window.location.pathname.substr(-1) !== "/"
+        // ) {
+        //   window.location.pathname = window.location.pathname + "/";
+        //   return;
+        // }
         s.renderEngine.setViewSelector(viewSelector);
-        $(window).on("hashchange", function() {
-          s.onhashchange(window.location.hash);
-        });
-        var route = s.match(window.location.hash);
+        // $(window).on("hashchange", function() {
+        //   s.onhashchange(window.location.hash);
+        // });
+        var route = s.match($.cookie("hash"));
         if (!route) {
           s.go(routeName, params);
         } else {
-          s.onhashchange(window.location.hash);
+          s.onhashchange($.cookie("hash"));
         }
         isFirstTime = false;
       }

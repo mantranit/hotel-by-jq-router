@@ -39,7 +39,7 @@ $(function() {
       const keyCode = event.keyCode || event.which;
       if ($("#welcomePage").is(":visible")) {
         if (keyCode === keyboard.ENTER) {
-          window.location.href = "#/";
+          $.router.onhashchange("#/");
         }
       }
 

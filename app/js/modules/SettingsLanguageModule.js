@@ -20,9 +20,9 @@ $(function() {
           i18njs.setLang(
             window.siteLanguages[window.settingsLanguageKeyboard.cursor].code
           );
-          window.location.href = "#/settings";
+          $.router.onhashchange("#/settings");
         } else if (window.keyboard.BACK.includes(keyCode)) {
-          window.location.href = "#/settings";
+          $.router.onhashchange("#/settings");
         }
 
         this.renderOptions();

@@ -145,7 +145,7 @@ $(function() {
             $("#televisionPlayerInfo").show();
           } else {
             window.televisionFilterKeyboard.selected = [];
-            window.location.href = "#/";
+            $.router.onhashchange("#/");
           }
         } else if (window.keyboard.BUTTON_YELLOW.includes(keyCode)) {
           $("#filterChannels").toggle();
