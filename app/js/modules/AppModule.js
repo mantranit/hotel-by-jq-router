@@ -36,19 +36,8 @@ $(function() {
       }
     },
     renderDynamicData: function() {
-      $("#clock").text(
-        new Date().toLocaleTimeString("en-US", {
-          hour: "2-digit",
-          minute: "2-digit",
-        })
-      );
-      $("#date").text(
-        new Date().toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })
-      );
+      $("#clock").text(moment().format("hh:mm A"));
+      $("#date").text(moment().format("MMMM D, YYYY"));
     },
   };
 
