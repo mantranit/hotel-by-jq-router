@@ -5,36 +5,37 @@ $(function() {
   };
   var WakeUpCallModule = {
     handleKeyDown: function(event) {
-      const keyCode = event.keyCode || event.which;
-      if ($("#wakeUpCallPage").is(":visible")) {
-        if (keyCode === window.keyboard.RIGHT) {
-        } else if (keyCode === window.keyboard.LEFT) {
-        } else if (keyCode === window.keyboard.TOP) {
-          window.wakeUpCallKeyboard.cursor = Math.max(
-            window.wakeUpCallKeyboard.cursor - 1,
-            0
-          );
-        } else if (keyCode === window.keyboard.BOTTOM) {
-          window.wakeUpCallKeyboard.cursor = Math.min(
-            window.wakeUpCallKeyboard.cursor + 1,
-            window.wakeUpCallTrack.length
-          );
-        } else if (keyCode === window.keyboard.ENTER) {
-          if (
-            window.wakeUpCallKeyboard.cursor < window.wakeUpCallTrack.length
-          ) {
-            window.wakeUpCallKeyboard.selected =
-              window.wakeUpCallKeyboard.cursor;
-          }
-        } else if (window.keyboard.BACK.includes(keyCode)) {
-          $.router.onhashchange("#/");
-        }
-
-        this.renderTrack();
+      if (!$("#wakeUpCallPage").is(":visible")) {
+        return;
       }
+      const keyCode = event.keyCode || event.which;
+      if (keyCode === window.keyboard.RIGHT) {
+      } else if (keyCode === window.keyboard.LEFT) {
+      } else if (keyCode === window.keyboard.TOP) {
+        window.wakeUpCallKeyboard.cursor = Math.max(
+          window.wakeUpCallKeyboard.cursor - 1,
+          0
+        );
+      } else if (keyCode === window.keyboard.BOTTOM) {
+        window.wakeUpCallKeyboard.cursor = Math.min(
+          window.wakeUpCallKeyboard.cursor + 1,
+          window.wakeUpCallTrack.length
+        );
+      } else if (keyCode === window.keyboard.ENTER) {
+        if (window.wakeUpCallKeyboard.cursor < window.wakeUpCallTrack.length) {
+          window.wakeUpCallKeyboard.selected = window.wakeUpCallKeyboard.cursor;
+        }
+      } else if (window.keyboard.BACK.includes(keyCode)) {
+        $.router.onhashchange("#/");
+      }
+
+      this.renderTrack();
     },
 
     renderTrack: function() {
+      if (!$("#wakeUpCallPage").is(":visible")) {
+        return;
+      }
       var activeTrack =
         window.wakeUpCallTrack[window.wakeUpCallKeyboard.cursor];
       if (window.wakeUpCallKeyboard.cursor === window.wakeUpCallTrack.length) {

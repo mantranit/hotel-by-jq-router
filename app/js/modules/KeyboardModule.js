@@ -25,35 +25,4 @@ $(function() {
     MENU: [4096], // Menu
     EXIT: [10000], // Exit
   };
-
-  var KeyboardModule = {
-    init: function() {
-      this.bindEvents();
-    },
-
-    bindEvents: function() {
-      document.addEventListener("keydown", this.handleKeyDown.bind(this));
-    },
-
-    handleKeyDown: function(event) {
-      const keyCode = event.keyCode || event.which;
-      if ($("#welcomePage").is(":visible")) {
-        if (keyCode === keyboard.ENTER) {
-          $.router.onhashchange("#/");
-        }
-      }
-
-      window.HomeModule.handleKeyDown(event);
-      window.TelevisionModule.handleKeyDown(event);
-      window.ConnectivityModule.handleKeyDown(event);
-      window.CategoryModule.handleKeyDown(event);
-      window.WakeUpCallModule.handleKeyDown(event);
-      window.FeedbackModule.handleKeyDown(event);
-      window.SettingsModule.handleKeyDown(event);
-      window.SettingsLanguageModule.handleKeyDown(event);
-    },
-  };
-
-  window.KeyboardModule = KeyboardModule;
-  window.KeyboardModule.init();
 });

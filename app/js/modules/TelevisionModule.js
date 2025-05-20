@@ -12,150 +12,154 @@ $(function() {
     timeHideTVControls: 0,
     iptvPlayer: null,
     handleKeyDown: function(event) {
+      if (!$("#televisionPage").is(":visible")) {
+        return;
+      }
       const keyCode = event.keyCode || event.which;
-      if ($("#televisionPage").is(":visible")) {
-        if ($("#filterChannels").is(":visible")) {
-          if (keyCode === window.keyboard.TOP) {
-            window.televisionFilterKeyboard.cursor = Math.max(
-              window.televisionFilterKeyboard.cursor - 1,
-              0
-            );
-          } else if (keyCode === window.keyboard.BOTTOM) {
-            window.televisionFilterKeyboard.cursor = Math.min(
-              window.televisionFilterKeyboard.cursor + 1,
-              window.channelCategories.length
-            );
-          } else if (keyCode === window.keyboard.ENTER) {
-            var selectedItem =
-              window.channelCategories[
-                window.televisionFilterKeyboard.cursor - 1
-              ];
-            if (selectedItem) {
-              if (
-                window.televisionFilterKeyboard.selected.includes(selectedItem)
-              ) {
-                window.televisionFilterKeyboard.selected = window.televisionFilterKeyboard.selected.filter(
-                  (item) => item !== selectedItem
-                );
-              } else {
-                window.televisionFilterKeyboard.selected.push(selectedItem);
-              }
-            } else {
-              window.televisionFilterKeyboard.selected = [];
-            }
-
-            this.renderChannels();
-            window.televisionKeyboard.cursorX = 0;
-            window.televisionKeyboard.cursorY = 0;
-            this.renderCursor();
-          } else if (
-            window.keyboard.BACK.includes(keyCode) ||
-            window.keyboard.BUTTON_YELLOW.includes(keyCode)
-          ) {
-            $("#filterChannels").toggle();
-            $("#televisionPlayer").toggle();
-          }
-
-          this.renderCategories();
-
-          return;
-        }
-        // Hide filter channels
-        if (keyCode === window.keyboard.RIGHT) {
-          if (window.televisionKeyboard.cursorX === this.itemInRow - 1) {
-            if (
-              window.filteredChannels[
-                (window.televisionKeyboard.cursorY + 1) * this.itemInRow
-              ]
-            ) {
-              window.televisionKeyboard.cursorX = 0;
-              window.televisionKeyboard.cursorY++;
-            }
-          } else {
-            var nextCursorX = Math.min(
-              window.televisionKeyboard.cursorX + 1,
-              this.itemInRow - 1
-            );
-            if (
-              window.filteredChannels[
-                nextCursorX + window.televisionKeyboard.cursorY * this.itemInRow
-              ]
-            ) {
-              window.televisionKeyboard.cursorX = nextCursorX;
-            }
-          }
-        } else if (keyCode === window.keyboard.LEFT) {
-          if (window.televisionKeyboard.cursorX === 0) {
-            if (
-              window.filteredChannels[
-                this.itemInRow -
-                  1 +
-                  (window.televisionKeyboard.cursorY - 1) * this.itemInRow
-              ]
-            ) {
-              window.televisionKeyboard.cursorX = this.itemInRow - 1;
-              window.televisionKeyboard.cursorY--;
-            }
-          } else {
-            window.televisionKeyboard.cursorX = Math.max(
-              window.televisionKeyboard.cursorX - 1,
-              0
-            );
-          }
-        } else if (keyCode === window.keyboard.TOP) {
-          window.televisionKeyboard.cursorY = Math.max(
-            window.televisionKeyboard.cursorY - 1,
+      if ($("#filterChannels").is(":visible")) {
+        if (keyCode === window.keyboard.TOP) {
+          window.televisionFilterKeyboard.cursor = Math.max(
+            window.televisionFilterKeyboard.cursor - 1,
             0
           );
         } else if (keyCode === window.keyboard.BOTTOM) {
-          var nextCursorY = Math.min(
-            window.televisionKeyboard.cursorY + 1,
-            Math.ceil(window.filteredChannels.length / this.itemInRow) - 1
+          window.televisionFilterKeyboard.cursor = Math.min(
+            window.televisionFilterKeyboard.cursor + 1,
+            window.channelCategories.length
           );
-          if (
-            !window.filteredChannels[
-              window.televisionKeyboard.cursorX + nextCursorY * this.itemInRow
-            ]
-          ) {
-            window.televisionKeyboard.cursorX =
-              (window.filteredChannels.length % this.itemInRow) - 1;
-          }
-          window.televisionKeyboard.cursorY = nextCursorY;
         } else if (keyCode === window.keyboard.ENTER) {
-          var activeChannel =
-            window.filteredChannels[
-              window.televisionKeyboard.cursorX +
-                window.televisionKeyboard.cursorY * this.itemInRow
+          var selectedItem =
+            window.channelCategories[
+              window.televisionFilterKeyboard.cursor - 1
             ];
-          if (activeChannel) {
-            $("#televisionPlayer")
-              .removeClass("not-fullscreen")
-              .addClass("fullscreen");
-          }
-        } else if (window.keyboard.BACK.includes(keyCode)) {
-          if ($("#televisionPlayer").hasClass("fullscreen")) {
-            $("#televisionPlayer")
-              .removeClass("fullscreen")
-              .addClass("not-fullscreen");
-
-            if (this.timeHideTVControls) {
-              clearTimeout(this.timeHideTVControls);
+          if (selectedItem) {
+            if (
+              window.televisionFilterKeyboard.selected.includes(selectedItem)
+            ) {
+              window.televisionFilterKeyboard.selected = window.televisionFilterKeyboard.selected.filter(
+                (item) => item !== selectedItem
+              );
+            } else {
+              window.televisionFilterKeyboard.selected.push(selectedItem);
             }
-            $("#header").show();
-            $("#televisionPlayerInfo").show();
           } else {
             window.televisionFilterKeyboard.selected = [];
-            $.router.onhashchange("#/");
           }
-        } else if (window.keyboard.BUTTON_YELLOW.includes(keyCode)) {
+
+          this.renderChannels();
+          window.televisionKeyboard.cursorX = 0;
+          window.televisionKeyboard.cursorY = 0;
+          this.renderCursor();
+        } else if (
+          window.keyboard.BACK.includes(keyCode) ||
+          window.keyboard.BUTTON_YELLOW.includes(keyCode)
+        ) {
           $("#filterChannels").toggle();
           $("#televisionPlayer").toggle();
         }
 
-        this.renderCursor();
+        this.renderCategories();
+
+        return;
       }
+      // Hide filter channels
+      if (keyCode === window.keyboard.RIGHT) {
+        if (window.televisionKeyboard.cursorX === this.itemInRow - 1) {
+          if (
+            window.filteredChannels[
+              (window.televisionKeyboard.cursorY + 1) * this.itemInRow
+            ]
+          ) {
+            window.televisionKeyboard.cursorX = 0;
+            window.televisionKeyboard.cursorY++;
+          }
+        } else {
+          var nextCursorX = Math.min(
+            window.televisionKeyboard.cursorX + 1,
+            this.itemInRow - 1
+          );
+          if (
+            window.filteredChannels[
+              nextCursorX + window.televisionKeyboard.cursorY * this.itemInRow
+            ]
+          ) {
+            window.televisionKeyboard.cursorX = nextCursorX;
+          }
+        }
+      } else if (keyCode === window.keyboard.LEFT) {
+        if (window.televisionKeyboard.cursorX === 0) {
+          if (
+            window.filteredChannels[
+              this.itemInRow -
+                1 +
+                (window.televisionKeyboard.cursorY - 1) * this.itemInRow
+            ]
+          ) {
+            window.televisionKeyboard.cursorX = this.itemInRow - 1;
+            window.televisionKeyboard.cursorY--;
+          }
+        } else {
+          window.televisionKeyboard.cursorX = Math.max(
+            window.televisionKeyboard.cursorX - 1,
+            0
+          );
+        }
+      } else if (keyCode === window.keyboard.TOP) {
+        window.televisionKeyboard.cursorY = Math.max(
+          window.televisionKeyboard.cursorY - 1,
+          0
+        );
+      } else if (keyCode === window.keyboard.BOTTOM) {
+        var nextCursorY = Math.min(
+          window.televisionKeyboard.cursorY + 1,
+          Math.ceil(window.filteredChannels.length / this.itemInRow) - 1
+        );
+        if (
+          !window.filteredChannels[
+            window.televisionKeyboard.cursorX + nextCursorY * this.itemInRow
+          ]
+        ) {
+          window.televisionKeyboard.cursorX =
+            (window.filteredChannels.length % this.itemInRow) - 1;
+        }
+        window.televisionKeyboard.cursorY = nextCursorY;
+      } else if (keyCode === window.keyboard.ENTER) {
+        var activeChannel =
+          window.filteredChannels[
+            window.televisionKeyboard.cursorX +
+              window.televisionKeyboard.cursorY * this.itemInRow
+          ];
+        if (activeChannel) {
+          $("#televisionPlayer")
+            .removeClass("not-fullscreen")
+            .addClass("fullscreen");
+        }
+      } else if (window.keyboard.BACK.includes(keyCode)) {
+        if ($("#televisionPlayer").hasClass("fullscreen")) {
+          $("#televisionPlayer")
+            .removeClass("fullscreen")
+            .addClass("not-fullscreen");
+
+          if (this.timeHideTVControls) {
+            clearTimeout(this.timeHideTVControls);
+          }
+          $("#header").show();
+          $("#televisionPlayerInfo").show();
+        } else {
+          window.televisionFilterKeyboard.selected = [];
+          $.router.onhashchange("#/");
+        }
+      } else if (window.keyboard.BUTTON_YELLOW.includes(keyCode)) {
+        $("#filterChannels").toggle();
+        $("#televisionPlayer").toggle();
+      }
+
+      this.renderCursor();
     },
     initIPTVPlayer: function() {
+      if (!$("#televisionPage").is(":visible")) {
+        return;
+      }
       try {
         var activeChannel =
           window.filteredChannels[
@@ -180,6 +184,9 @@ $(function() {
       }
     },
     changeSourceIPTV: function() {
+      if (!$("#televisionPage").is(":visible")) {
+        return;
+      }
       var activeChannel =
         window.filteredChannels[
           window.televisionKeyboard.cursorX +
@@ -204,6 +211,9 @@ $(function() {
       }
     },
     renderCursor: function() {
+      if (!$("#televisionPage").is(":visible")) {
+        return;
+      }
       $("#televisionCursor").css({
         transform: `translate(${window.televisionKeyboard.cursorX *
           (152 + 36)}px, ${window.televisionKeyboard.cursorY * (123 + 36)}px)`,
@@ -232,6 +242,9 @@ $(function() {
       }
     },
     renderChannels: function() {
+      if (!$("#televisionPage").is(":visible")) {
+        return;
+      }
       window.filteredChannels = window.channels;
       var filteredCategories = window.televisionFilterKeyboard.selected;
       if (filteredCategories.length > 0) {
@@ -268,6 +281,9 @@ $(function() {
       });
     },
     renderCategories: function() {
+      if (!$("#televisionPage").is(":visible")) {
+        return;
+      }
       if (window.televisionFilterKeyboard.selected.length > 0) {
         $("#televisionFilter").html(
           window.televisionFilterKeyboard.selected.join(", ")

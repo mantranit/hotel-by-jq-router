@@ -1783,10 +1783,16 @@ var vm = {};
     );
     $("#welcomeBrief").html(i18njs.get("welcome.Brief"));
     $("#welcomeContinue").html(i18njs.get("welcome.Continue"));
+    document.onkeydown = function(event) {
+      window.WelcomeModule.handleKeyDown(event);
+    };
   };
 
   vm.homeVM = function(route, param) {
     window.HomeModule.renderMenu();
+    document.onkeydown = function(event) {
+      window.HomeModule.handleKeyDown(event);
+    };
   };
 
   vm.televisionVM = function(route, param) {
@@ -1794,27 +1800,24 @@ var vm = {};
     window.TelevisionModule.renderChannels();
     window.TelevisionModule.renderCursor();
     window.TelevisionModule.renderCategories();
+    document.onkeydown = function(event) {
+      window.TelevisionModule.handleKeyDown(event);
+    };
   };
 
   vm.connectivityVM = function(route, param) {
     window.ConnectivityModule.renderSources();
-  };
-
-  vm.storeVM = function(route, param) {
-    $("#categories").empty();
-    categories.forEach(function(item, index) {
-      var href = $.router.href("categoryDetail", {
-        categoryId: index,
-      });
-      $("#categories").append(
-        "<li><a href='" + href + "'>" + item + "</a></li>"
-      );
-    });
+    document.onkeydown = function(event) {
+      window.ConnectivityModule.handleKeyDown(event);
+    };
   };
 
   vm.categoryVM = function(route, param) {
     window.CategoryModule.renderCategory(param.categoryId);
     window.CategoryModule.renderCursor();
+    document.onkeydown = function(event) {
+      window.CategoryModule.handleKeyDown(event);
+    };
   };
 
   vm.productVM = function(route, param) {
@@ -1843,7 +1846,6 @@ var vm = {};
   };
 
   vm.productDetailVM = function(route, param) {
-    console.log(param);
     $("#categoryName").text(categories[param.categoryId]);
     $("#subCategoryName").text(
       subCategories[param.categoryId][param.subCategoryId]
@@ -1866,17 +1868,29 @@ var vm = {};
 
   vm.wakeUpCallVM = function(route, param) {
     window.WakeUpCallModule.renderTrack();
+    document.onkeydown = function(event) {
+      window.WakeUpCallModule.handleKeyDown(event);
+    };
   };
 
   vm.feedbackVM = function(route, param) {
     window.FeedbackModule.renderFeedback();
     window.FeedbackModule.scrollTo();
+    document.onkeydown = function(event) {
+      window.FeedbackModule.handleKeyDown(event);
+    };
   };
 
   vm.settingsVM = function(route, param) {
     window.SettingsModule.renderOptions();
+    document.onkeydown = function(event) {
+      window.SettingsModule.handleKeyDown(event);
+    };
   };
   vm.settingsLanguageVM = function(route, param) {
     window.SettingsLanguageModule.renderOptions();
+    document.onkeydown = function(event) {
+      window.SettingsLanguageModule.handleKeyDown(event);
+    };
   };
 })();

@@ -5,116 +5,117 @@ $(function() {
   };
   var FeedbackModule = {
     handleKeyDown: function(event) {
+      if (!$("#feedbackPage").is(":visible")) {
+        return;
+      }
       const keyCode = event.keyCode || event.which;
-      if ($("#feedbackPage").is(":visible")) {
-        if (keyCode === window.keyboard.RIGHT) {
-          if (
-            window.feedbackList[window.feedbackKeyboard.cursor].type === "star"
-          ) {
-            window.feedbackList.forEach(function(item, index) {
-              item.selected = Math.min(5, item.selected + 1);
-            });
-          }
-        } else if (keyCode === window.keyboard.LEFT) {
-          if (
-            window.feedbackList[window.feedbackKeyboard.cursor].type === "star"
-          ) {
-            window.feedbackList.forEach(function(item, index) {
-              item.selected = Math.max(1, item.selected - 1);
-            });
-          }
-        } else if (keyCode === window.keyboard.TOP) {
-          if (
-            window.feedbackList[window.feedbackKeyboard.cursor] &&
-            window.feedbackList[window.feedbackKeyboard.cursor].type ===
-              "select"
-          ) {
-            const prevCursorSelect = window.feedbackKeyboard.cursorSelect - 1;
-            if (prevCursorSelect <= -1) {
-              window.feedbackKeyboard.cursor = Math.max(
-                window.feedbackKeyboard.cursor - 1,
-                0
-              );
-            } else {
-              window.feedbackKeyboard.cursorSelect = prevCursorSelect;
-            }
-          } else {
+      if (keyCode === window.keyboard.RIGHT) {
+        if (
+          window.feedbackList[window.feedbackKeyboard.cursor].type === "star"
+        ) {
+          window.feedbackList.forEach(function(item, index) {
+            item.selected = Math.min(5, item.selected + 1);
+          });
+        }
+      } else if (keyCode === window.keyboard.LEFT) {
+        if (
+          window.feedbackList[window.feedbackKeyboard.cursor].type === "star"
+        ) {
+          window.feedbackList.forEach(function(item, index) {
+            item.selected = Math.max(1, item.selected - 1);
+          });
+        }
+      } else if (keyCode === window.keyboard.TOP) {
+        if (
+          window.feedbackList[window.feedbackKeyboard.cursor] &&
+          window.feedbackList[window.feedbackKeyboard.cursor].type === "select"
+        ) {
+          const prevCursorSelect = window.feedbackKeyboard.cursorSelect - 1;
+          if (prevCursorSelect <= -1) {
             window.feedbackKeyboard.cursor = Math.max(
               window.feedbackKeyboard.cursor - 1,
               0
             );
-          }
-        } else if (keyCode === window.keyboard.BOTTOM) {
-          if (
-            window.feedbackList[window.feedbackKeyboard.cursor] &&
-            window.feedbackList[window.feedbackKeyboard.cursor].type ===
-              "select"
-          ) {
-            const nextCursorSelect = window.feedbackKeyboard.cursorSelect + 1;
-            if (
-              nextCursorSelect >=
-              window.feedbackList[window.feedbackKeyboard.cursor].options.length
-            ) {
-              window.feedbackKeyboard.cursor = Math.min(
-                window.feedbackKeyboard.cursor + 1,
-                window.feedbackList.length
-              );
-            } else {
-              window.feedbackKeyboard.cursorSelect = nextCursorSelect;
-            }
           } else {
+            window.feedbackKeyboard.cursorSelect = prevCursorSelect;
+          }
+        } else {
+          window.feedbackKeyboard.cursor = Math.max(
+            window.feedbackKeyboard.cursor - 1,
+            0
+          );
+        }
+      } else if (keyCode === window.keyboard.BOTTOM) {
+        if (
+          window.feedbackList[window.feedbackKeyboard.cursor] &&
+          window.feedbackList[window.feedbackKeyboard.cursor].type === "select"
+        ) {
+          const nextCursorSelect = window.feedbackKeyboard.cursorSelect + 1;
+          if (
+            nextCursorSelect >=
+            window.feedbackList[window.feedbackKeyboard.cursor].options.length
+          ) {
             window.feedbackKeyboard.cursor = Math.min(
               window.feedbackKeyboard.cursor + 1,
               window.feedbackList.length
             );
+          } else {
+            window.feedbackKeyboard.cursorSelect = nextCursorSelect;
           }
-        } else if (keyCode === window.keyboard.ENTER) {
-          if ($("#feedbackAlert").is(":visible")) {
-            window.feedbackList.forEach(function(item, index) {
-              item.selected = 1;
-              item.value = 0;
-            });
-            window.feedbackKeyboard.cursor = 0;
-            window.feedbackKeyboard.cursorSelect = 0;
-            $.router.onhashchange("#/");
-            return;
-          } else if (
-            window.feedbackKeyboard.cursor === window.feedbackList.length
-          ) {
-            console.log("Submit feedback");
-            $("#feedbackAlert").fadeIn(200);
-            return;
-          } else if (
-            window.feedbackList[window.feedbackKeyboard.cursor] &&
-            window.feedbackList[window.feedbackKeyboard.cursor].type === "star"
-          ) {
-            window.feedbackList[window.feedbackKeyboard.cursor].value =
-              window.feedbackList[window.feedbackKeyboard.cursor].selected;
-          } else if (
-            window.feedbackList[window.feedbackKeyboard.cursor] &&
-            window.feedbackList[window.feedbackKeyboard.cursor].type ===
-              "select"
-          ) {
-            window.feedbackList[window.feedbackKeyboard.cursor].value =
-              window.feedbackList[window.feedbackKeyboard.cursor].options[
-                window.feedbackKeyboard.cursorSelect
-              ];
-          }
-          // go to next feedback
+        } else {
           window.feedbackKeyboard.cursor = Math.min(
             window.feedbackKeyboard.cursor + 1,
             window.feedbackList.length
           );
-        } else if (window.keyboard.BACK.includes(keyCode)) {
-          $.router.onhashchange("#/");
         }
-
-        this.renderFeedback();
-        this.scrollTo();
+      } else if (keyCode === window.keyboard.ENTER) {
+        if ($("#feedbackAlert").is(":visible")) {
+          window.feedbackList.forEach(function(item, index) {
+            item.selected = 1;
+            item.value = 0;
+          });
+          window.feedbackKeyboard.cursor = 0;
+          window.feedbackKeyboard.cursorSelect = 0;
+          $.router.onhashchange("#/");
+          return;
+        } else if (
+          window.feedbackKeyboard.cursor === window.feedbackList.length
+        ) {
+          console.log("Submit feedback");
+          $("#feedbackAlert").fadeIn(200);
+          return;
+        } else if (
+          window.feedbackList[window.feedbackKeyboard.cursor] &&
+          window.feedbackList[window.feedbackKeyboard.cursor].type === "star"
+        ) {
+          window.feedbackList[window.feedbackKeyboard.cursor].value =
+            window.feedbackList[window.feedbackKeyboard.cursor].selected;
+        } else if (
+          window.feedbackList[window.feedbackKeyboard.cursor] &&
+          window.feedbackList[window.feedbackKeyboard.cursor].type === "select"
+        ) {
+          window.feedbackList[window.feedbackKeyboard.cursor].value =
+            window.feedbackList[window.feedbackKeyboard.cursor].options[
+              window.feedbackKeyboard.cursorSelect
+            ];
+        }
+        // go to next feedback
+        window.feedbackKeyboard.cursor = Math.min(
+          window.feedbackKeyboard.cursor + 1,
+          window.feedbackList.length
+        );
+      } else if (window.keyboard.BACK.includes(keyCode)) {
+        $.router.onhashchange("#/");
       }
+
+      this.renderFeedback();
+      this.scrollTo();
     },
 
     scrollTo: function() {
+      if (!$("#feedbackPage").is(":visible")) {
+        return;
+      }
       var feedbackContent = $("#feedbackContent").get(0);
       var feedbackContentInner = $("#feedbackContentInner").get(0);
       var children = feedbackContentInner.children;
@@ -139,6 +140,9 @@ $(function() {
     },
 
     renderFeedback: function() {
+      if (!$("#feedbackPage").is(":visible")) {
+        return;
+      }
       if (window.feedbackKeyboard.cursor === window.feedbackList.length) {
         $("#feedbackSubmit").addClass("site-button--active");
       } else {

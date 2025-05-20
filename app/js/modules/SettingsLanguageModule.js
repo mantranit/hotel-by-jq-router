@@ -4,32 +4,36 @@ $(function() {
   };
   var SettingsLanguageModule = {
     handleKeyDown: function(event) {
-      const keyCode = event.keyCode || event.which;
-      if ($("#settingsLanguagePage").is(":visible")) {
-        if (keyCode === window.keyboard.TOP) {
-          window.settingsLanguageKeyboard.cursor = Math.max(
-            window.settingsLanguageKeyboard.cursor - 1,
-            0
-          );
-        } else if (keyCode === window.keyboard.BOTTOM) {
-          window.settingsLanguageKeyboard.cursor = Math.min(
-            window.settingsLanguageKeyboard.cursor + 1,
-            window.siteLanguages.length - 1
-          );
-        } else if (keyCode === window.keyboard.ENTER) {
-          i18njs.setLang(
-            window.siteLanguages[window.settingsLanguageKeyboard.cursor].code
-          );
-          $.router.onhashchange("#/settings");
-        } else if (window.keyboard.BACK.includes(keyCode)) {
-          $.router.onhashchange("#/settings");
-        }
-
-        this.renderOptions();
+      if (!$("#settingsLanguagePage").is(":visible")) {
+        return;
       }
+      const keyCode = event.keyCode || event.which;
+      if (keyCode === window.keyboard.TOP) {
+        window.settingsLanguageKeyboard.cursor = Math.max(
+          window.settingsLanguageKeyboard.cursor - 1,
+          0
+        );
+      } else if (keyCode === window.keyboard.BOTTOM) {
+        window.settingsLanguageKeyboard.cursor = Math.min(
+          window.settingsLanguageKeyboard.cursor + 1,
+          window.siteLanguages.length - 1
+        );
+      } else if (keyCode === window.keyboard.ENTER) {
+        i18njs.setLang(
+          window.siteLanguages[window.settingsLanguageKeyboard.cursor].code
+        );
+        $.router.onhashchange("#/settings");
+      } else if (window.keyboard.BACK.includes(keyCode)) {
+        $.router.onhashchange("#/settings");
+      }
+
+      this.renderOptions();
     },
 
     renderOptions: function() {
+      if (!$("#settingsLanguagePage").is(":visible")) {
+        return;
+      }
       $("#settingLanguageList").empty();
       window.siteLanguages.forEach((item, index) => {
         $("#settingLanguageList").append(

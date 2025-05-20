@@ -6,37 +6,43 @@ $(function() {
   var HomeModule = {
     visibleItem: 5,
     handleKeyDown: function(event) {
-      const keyCode = event.keyCode || event.which;
-      if ($("#homePage").is(":visible")) {
-        if (keyCode === window.keyboard.RIGHT) {
-          window.homeKeyboard.currentIndex = Math.min(
-            window.homeKeyboard.currentIndex + 1,
-            window.menu.length - 1
-          );
-          window.homeKeyboard.cursor = Math.min(
-            window.homeKeyboard.cursor + 1,
-            this.visibleItem - 1
-          );
-        } else if (keyCode === window.keyboard.LEFT) {
-          window.homeKeyboard.currentIndex = Math.max(
-            window.homeKeyboard.currentIndex - 1,
-            0
-          );
-          window.homeKeyboard.cursor = Math.max(
-            window.homeKeyboard.cursor - 1,
-            0
-          );
-        } else if (keyCode === window.keyboard.ENTER) {
-          const currentItem = window.menu[window.homeKeyboard.currentIndex];
-          console.log(currentItem.path, "#" + currentItem.path);
-          $.router.onhashchange("#" + currentItem.path);
-        }
-
-        this.renderMenu();
+      if (!$("#homePage").is(":visible")) {
+        return;
       }
+      const keyCode = event.keyCode || event.which;
+      if (keyCode === window.keyboard.RIGHT) {
+        window.homeKeyboard.currentIndex = Math.min(
+          window.homeKeyboard.currentIndex + 1,
+          window.menu.length - 1
+        );
+        window.homeKeyboard.cursor = Math.min(
+          window.homeKeyboard.cursor + 1,
+          this.visibleItem - 1
+        );
+      } else if (keyCode === window.keyboard.LEFT) {
+        window.homeKeyboard.currentIndex = Math.max(
+          window.homeKeyboard.currentIndex - 1,
+          0
+        );
+        window.homeKeyboard.cursor = Math.max(
+          window.homeKeyboard.cursor - 1,
+          0
+        );
+      } else if (keyCode === window.keyboard.ENTER) {
+        const currentItem = window.menu[window.homeKeyboard.currentIndex];
+        console.log(currentItem.path, "#" + currentItem.path);
+        $.router.onhashchange("#" + currentItem.path);
+        event.preventDefault();
+        event.stopPropagation();
+      }
+
+      this.renderMenu();
     },
 
     renderMenu: function() {
+      if (!$("#homePage").is(":visible")) {
+        return;
+      }
       if (window.homeKeyboard.cursor === window.homeKeyboard.currentIndex) {
         $("#btnArrowLeft").addClass("disabled");
       } else {

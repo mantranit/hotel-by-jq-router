@@ -1,7 +1,8 @@
 import "../scss/app.scss";
 
-import "./modules/UIModule";
+import "./modules/KeyboardModule";
 import "./modules/LocaleModule";
+import "./modules/WelcomeModule";
 import "./modules/HomeModule";
 import "./modules/TelevisionModule";
 import "./modules/ConnectivityModule";
@@ -10,7 +11,6 @@ import "./modules/WakeUpCallModule";
 import "./modules/FeedbackModule";
 import "./modules/SettingsModule";
 import "./modules/SettingsLanguageModule";
-import "./modules/KeyboardModule";
 
 // header
 import "./modules/AppModule";
@@ -89,6 +89,9 @@ import "./modules/AppModule";
   $.router
     .setData(routes)
     .setDefault(defaultRoute)
+    .onRouteBeforeChange(function(e, route, params) {
+      document.onkeydown = function() {};
+    })
     .onRouteChanged(function(e, route, param) {
       route.viewModel(route, param);
     });
