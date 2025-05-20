@@ -43,7 +43,7 @@ import "./modules/AppModule";
     viewModel: vm["connectivityVM"],
   };
 
-  routes["categoryDetail"] = {
+  routes["category"] = {
     url: "#/categories/:categoryId",
     templateUrl: "templates/category.html",
     viewModel: vm["categoryVM"],
