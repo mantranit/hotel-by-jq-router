@@ -26,6 +26,29 @@ $(function() {
     EXIT: [10000], // Exit
   };
 
+  if (!Array.prototype.includes) {
+    Array.prototype.includes = function(search) {
+      var that = this;
+      if (that == null) {
+        throw new TypeError('"this" is null or not defined');
+      }
+      var O = Object(that);
+      var len = O.length >>> 0;
+      if (len === 0) {
+        return false;
+      }
+      var n = arguments[1] | 0;
+      var k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
+      while (k < len) {
+        if (O[k] === search) {
+          return true;
+        }
+        k++;
+      }
+      return false;
+    };
+  }
+
   var AppModule = {
     fullscreen: function() {
       var clientWidth = document.documentElement.clientWidth;
