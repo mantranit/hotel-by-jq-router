@@ -30,10 +30,10 @@ $(function() {
         );
       } else if (keyCode === window.keyboard.ENTER) {
         const currentItem = window.menu[window.homeKeyboard.currentIndex];
-        console.log(currentItem.path, "#" + currentItem.path);
+        console.log("#" + currentItem.path);
         $.router.onhashchange("#" + currentItem.path);
-        event.preventDefault();
-        event.stopPropagation();
+      } else if (window.keyboard.BACK.includes(keyCode)) {
+        $.router.onhashchange("#/welcome");
       }
 
       this.renderMenu();
