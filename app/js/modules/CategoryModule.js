@@ -119,7 +119,7 @@ $(function() {
           `<div class="category-item">
             <div class="category-item-inner">
               <img alt="" width="390" height="158" src="${item.img}">
-              <div class="brief">
+              <div class="brief" style="background-image: url(assets/images/icons/pagelist_bg_v3.png);">
                 <p class="title">${item.title}</p>
                 <p class="time">${item.time}</p>
               </div>

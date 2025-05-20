@@ -1602,28 +1602,28 @@ var vm = {};
   window.wakeUpCallTrack = [
     {
       title: "Inspiration Morning",
-      audio: "/assets/images/wakeup/audio/01.mp3",
-      image: "/assets/images/wakeup/image/01.jpg",
+      audio: "assets/images/wakeup/audio/01.mp3",
+      image: "assets/images/wakeup/image/01.jpg",
     },
     {
       title: "Birds in a Forest",
-      audio: "/assets/images/wakeup/audio/02.mp3",
-      image: "/assets/images/wakeup/image/02.jpg",
+      audio: "assets/images/wakeup/audio/02.mp3",
+      image: "assets/images/wakeup/image/02.jpg",
     },
     {
       title: "Morning Touch",
-      audio: "/assets/images/wakeup/audio/03.mp3",
-      image: "/assets/images/wakeup/image/03.jpg",
+      audio: "assets/images/wakeup/audio/03.mp3",
+      image: "assets/images/wakeup/image/03.jpg",
     },
     {
       title: "Brand New Day",
-      audio: "/assets/images/wakeup/audio/04.mp3",
-      image: "/assets/images/wakeup/image/04.jpg",
+      audio: "assets/images/wakeup/audio/04.mp3",
+      image: "assets/images/wakeup/image/04.jpg",
     },
     {
       title: "Summer Jump",
-      audio: "/assets/images/wakeup/audio/05.mp3",
-      image: "/assets/images/wakeup/image/05.jpg",
+      audio: "assets/images/wakeup/audio/05.mp3",
+      image: "assets/images/wakeup/image/05.jpg",
     },
   ];
 
