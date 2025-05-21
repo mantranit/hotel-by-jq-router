@@ -16,87 +16,163 @@ import "./modules/SettingsLanguageModule";
 import "./modules/AppModule";
 
 (function($) {
-  var routes = {},
-    defaultRoute = "welcome";
-
-  routes["welcome"] = {
-    url: "#/welcome",
-    templateUrl: "templates/welcome.html",
-    viewModel: vm["welcomeVM"],
+  vm.welcomeVM = function(route, param) {
+    window.WelcomeModule.renderPage();
+    window.WelcomeModule.renderContent();
+    document.onkeydown = function(event) {
+      window.WelcomeModule.handleKeyDown(event);
+    };
   };
 
-  routes["home"] = {
-    url: "#/",
-    templateUrl: "templates/home.html",
-    viewModel: vm["homeVM"],
+  vm.homeVM = function(route, param) {
+    window.HomeModule.renderPage();
+    window.HomeModule.renderMenu();
+    document.onkeydown = function(event) {
+      window.HomeModule.handleKeyDown(event);
+    };
   };
 
-  routes["television"] = {
-    url: "#/television",
-    templateUrl: "templates/television.html",
-    viewModel: vm["televisionVM"],
+  vm.televisionVM = function(route, param) {
+    window.TelevisionModule.renderPage();
+    window.TelevisionModule.initIPTVPlayer();
+    window.TelevisionModule.renderChannels();
+    window.TelevisionModule.renderCursor();
+    window.TelevisionModule.renderCategories();
+    document.onkeydown = function(event) {
+      window.TelevisionModule.handleKeyDown(event);
+    };
   };
 
-  routes["connectivity"] = {
-    url: "#/connectivity",
-    templateUrl: "templates/connectivity.html",
-    viewModel: vm["connectivityVM"],
+  vm.connectivityVM = function(route, param) {
+    window.ConnectivityModule.renderPage();
+    window.ConnectivityModule.renderSources();
+    document.onkeydown = function(event) {
+      window.ConnectivityModule.handleKeyDown(event);
+    };
   };
 
-  routes["category"] = {
-    url: "#/categories/:categoryId",
-    templateUrl: "templates/category.html",
-    viewModel: vm["categoryVM"],
+  vm.categoryVM = function(route, param) {
+    var categoryId = route.split("/").pop();
+    window.CategoryModule.renderPage();
+    window.CategoryModule.renderCategory(categoryId);
+    window.CategoryModule.renderCursor();
+    document.onkeydown = function(event) {
+      window.CategoryModule.handleKeyDown(event);
+    };
   };
 
-  // routes["subCategoryDetail"] = {
-  //   url: "#/categories/:categoryId/sub-categories/:subCategoryId",
-  //   templateUrl: "templates/product.html",
-  //   viewModel: vm["productVM"],
-  // };
+  vm.productVM = function(route, param) {
+    console.log(param);
+    $("#categoryName").text(categories[param.categoryId]);
+    $("#subCategoryName").text(
+      subCategories[param.categoryId][param.subCategoryId]
+    );
+    $("#btnBack").attr("href", "#/categories/" + param.categoryId);
 
-  // routes["productDetail"] = {
-  //   url:
-  //     "#/categories/:categoryId/sub-categories/:subCategoryId/products/:productId",
-  //   templateUrl: "templates/product-detail.html",
-  //   viewModel: vm["productDetailVM"],
-  // };
+    $("#products").empty();
+    products[param.categoryId][param.subCategoryId].forEach(function(
+      item,
+      index
+    ) {
+      var href = $.router.href("productDetail", {
+        categoryId: param.categoryId,
+        subCategoryId: param.subCategoryId,
+        productId: index,
+      });
 
-  routes["wakeUpCall"] = {
-    url: "#/wake-up-call",
-    templateUrl: "templates/wake-up-call.html",
-    viewModel: vm["wakeUpCallVM"],
-  };
-
-  routes["feedback"] = {
-    url: "#/feedback",
-    templateUrl: "templates/feedback.html",
-    viewModel: vm["feedbackVM"],
-  };
-
-  routes["settings"] = {
-    url: "#/settings",
-    templateUrl: "templates/settings.html",
-    viewModel: vm["settingsVM"],
-  };
-
-  routes["settings-language"] = {
-    url: "#/settings/language",
-    templateUrl: "templates/settings-language.html",
-    viewModel: vm["settingsLanguageVM"],
-  };
-
-  $.router
-    .setData(routes)
-    .setDefault(defaultRoute)
-    .onRouteBeforeChange(function(e, route, params) {
-      document.onkeydown = function() {};
-    })
-    .onRouteChanged(function(e, route, param) {
-      route.viewModel(route, param);
+      $("#products").append(
+        "<li><a href='" + href + "'>" + item.name + "</a></li>"
+      );
     });
+  };
+
+  vm.productDetailVM = function(route, param) {
+    $("#categoryName").text(categories[param.categoryId]);
+    $("#subCategoryName").text(
+      subCategories[param.categoryId][param.subCategoryId]
+    );
+    $("#btnBack").attr(
+      "href",
+      "#/categories/" +
+        param.categoryId +
+        "/sub-categories/" +
+        param.subCategoryId
+    );
+
+    var product =
+      products[param.categoryId][param.subCategoryId][param.productId];
+
+    $("#productName").text(product.name);
+    $("#price").text(product.price);
+    $("#rating").text(product.rating);
+  };
+
+  vm.wakeUpCallVM = function(route, param) {
+    window.WakeUpCallModule.renderPage();
+    window.WakeUpCallModule.renderTrack();
+    document.onkeydown = function(event) {
+      window.WakeUpCallModule.handleKeyDown(event);
+    };
+  };
+
+  vm.feedbackVM = function(route, param) {
+    window.FeedbackModule.renderPage();
+    window.FeedbackModule.renderFeedback();
+    window.FeedbackModule.scrollTo();
+    document.onkeydown = function(event) {
+      window.FeedbackModule.handleKeyDown(event);
+    };
+  };
+
+  vm.settingsVM = function(route, param) {
+    window.SettingsModule.renderPage();
+    window.SettingsModule.renderOptions();
+    document.onkeydown = function(event) {
+      window.SettingsModule.handleKeyDown(event);
+    };
+  };
+  vm.settingsLanguageVM = function(route, param) {
+    window.SettingsLanguageModule.renderPage();
+    window.SettingsLanguageModule.renderOptions();
+    document.onkeydown = function(event) {
+      window.SettingsLanguageModule.handleKeyDown(event);
+    };
+  };
+
+  vm.navigateTo = function(hash) {
+    $.cookie("hash", hash);
+    var categoriesRegex = /categories\/(.+)/;
+    var page = hash.split("/").pop();
+    if (page === "welcome") {
+      vm.welcomeVM();
+    } else if (page === "") {
+      vm.homeVM();
+    } else if (page === "television") {
+      vm.televisionVM();
+    } else if (page === "connectivity") {
+      vm.connectivityVM();
+    } else if (categoriesRegex.test(hash)) {
+      vm.categoryVM(hash);
+    } else if (page === "product") {
+      vm.productVM();
+    } else if (page === "productDetail") {
+      vm.productDetailVM();
+    } else if (page === "wake-up-call") {
+      vm.wakeUpCallVM();
+    } else if (page === "feedback") {
+      vm.feedbackVM();
+    } else if (page === "settings") {
+      vm.settingsVM();
+    } else if (page === "settings-language") {
+      vm.settingsLanguageVM();
+    }
+  };
 
   $.when($.ready).then(function() {
-    $.router.run("#app", "welcome");
+    var hash = $.cookie("hash");
+    if (!hash) {
+      hash = "#/welcome";
+    }
+    vm.navigateTo(hash);
   });
 })(jQuery);
