@@ -168,16 +168,16 @@ var vm = window.vm || {};
     }
   };
 
-  var tid = setInterval(function() {
-    if (document.readyState != "complete") return;
-    clearInterval(tid);
-    // do your work
-    var hash = $.cookie("hash");
-    if (!hash) {
-      hash = "#/welcome";
-    }
-    vm.navigateTo(hash);
-  }, 1000);
+  // var tid = setInterval(function() {
+  //   if (document.readyState != "complete") return;
+  //   clearInterval(tid);
+  //   // do your work
+  //   var hash = $.cookie("hash");
+  //   if (!hash) {
+  //     hash = "#/welcome";
+  //   }
+  //   vm.navigateTo(hash);
+  // }, 1000);
   // $.when($.ready).then(function() {
   //   var hash = $.cookie("hash");
   //   if (!hash) {
