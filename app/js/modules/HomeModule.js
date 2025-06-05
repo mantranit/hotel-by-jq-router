@@ -10,7 +10,7 @@ $(function() {
         return;
       }
       const keyCode = event.keyCode || event.which;
-      if (keyCode === window.keyboard.RIGHT) {
+      if (window.keyboard.checkKeyCode("RIGHT", keyCode)) {
         window.homeKeyboard.currentIndex = Math.min(
           window.homeKeyboard.currentIndex + 1,
           window.menu.length - 1
@@ -19,7 +19,7 @@ $(function() {
           window.homeKeyboard.cursor + 1,
           this.visibleItem - 1
         );
-      } else if (keyCode === window.keyboard.LEFT) {
+      } else if (window.keyboard.checkKeyCode("LEFT", keyCode)) {
         window.homeKeyboard.currentIndex = Math.max(
           window.homeKeyboard.currentIndex - 1,
           0
@@ -28,11 +28,11 @@ $(function() {
           window.homeKeyboard.cursor - 1,
           0
         );
-      } else if (keyCode === window.keyboard.ENTER) {
+      } else if (window.keyboard.checkKeyCode("ENTER", keyCode)) {
         const currentItem = window.menu[window.homeKeyboard.currentIndex];
         console.log("#" + currentItem.path);
         vm.navigateTo("#" + currentItem.path);
-      } else if (window.keyboard.BACK.includes(keyCode)) {
+      } else if (window.keyboard.checkKeyCode("BACK", keyCode)) {
         vm.navigateTo("#/welcome");
       }
 

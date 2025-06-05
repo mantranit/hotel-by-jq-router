@@ -1,6 +1,5 @@
 import "../scss/app.scss";
 
-import "./modules/KeyboardModule";
 import "./modules/LocaleModule";
 import "./modules/WelcomeModule";
 import "./modules/HomeModule";
@@ -15,11 +14,12 @@ import "./modules/SettingsLanguageModule";
 // header
 import "./modules/AppModule";
 
+var vm = window.vm || {};
 (function($) {
   vm.welcomeVM = function(route, param) {
     window.WelcomeModule.renderPage();
     window.WelcomeModule.renderContent();
-    document.onkeydown = function(event) {
+    document.body.onkeydown = function(event) {
       window.WelcomeModule.handleKeyDown(event);
     };
   };
@@ -27,7 +27,7 @@ import "./modules/AppModule";
   vm.homeVM = function(route, param) {
     window.HomeModule.renderPage();
     window.HomeModule.renderMenu();
-    document.onkeydown = function(event) {
+    document.body.onkeydown = function(event) {
       window.HomeModule.handleKeyDown(event);
     };
   };
@@ -38,7 +38,7 @@ import "./modules/AppModule";
     window.TelevisionModule.renderChannels();
     window.TelevisionModule.renderCursor();
     window.TelevisionModule.renderCategories();
-    document.onkeydown = function(event) {
+    document.body.onkeydown = function(event) {
       window.TelevisionModule.handleKeyDown(event);
     };
   };
@@ -46,7 +46,7 @@ import "./modules/AppModule";
   vm.connectivityVM = function(route, param) {
     window.ConnectivityModule.renderPage();
     window.ConnectivityModule.renderSources();
-    document.onkeydown = function(event) {
+    document.body.onkeydown = function(event) {
       window.ConnectivityModule.handleKeyDown(event);
     };
   };
@@ -56,7 +56,7 @@ import "./modules/AppModule";
     window.CategoryModule.renderPage();
     window.CategoryModule.renderCategory(categoryId);
     window.CategoryModule.renderCursor();
-    document.onkeydown = function(event) {
+    document.body.onkeydown = function(event) {
       window.CategoryModule.handleKeyDown(event);
     };
   };
@@ -110,7 +110,7 @@ import "./modules/AppModule";
   vm.wakeUpCallVM = function(route, param) {
     window.WakeUpCallModule.renderPage();
     window.WakeUpCallModule.renderTrack();
-    document.onkeydown = function(event) {
+    document.body.onkeydown = function(event) {
       window.WakeUpCallModule.handleKeyDown(event);
     };
   };
@@ -119,7 +119,7 @@ import "./modules/AppModule";
     window.FeedbackModule.renderPage();
     window.FeedbackModule.renderFeedback();
     window.FeedbackModule.scrollTo();
-    document.onkeydown = function(event) {
+    document.body.onkeydown = function(event) {
       window.FeedbackModule.handleKeyDown(event);
     };
   };
@@ -127,14 +127,14 @@ import "./modules/AppModule";
   vm.settingsVM = function(route, param) {
     window.SettingsModule.renderPage();
     window.SettingsModule.renderOptions();
-    document.onkeydown = function(event) {
+    document.body.onkeydown = function(event) {
       window.SettingsModule.handleKeyDown(event);
     };
   };
   vm.settingsLanguageVM = function(route, param) {
     window.SettingsLanguageModule.renderPage();
     window.SettingsLanguageModule.renderOptions();
-    document.onkeydown = function(event) {
+    document.body.onkeydown = function(event) {
       window.SettingsLanguageModule.handleKeyDown(event);
     };
   };
@@ -168,11 +168,11 @@ import "./modules/AppModule";
     }
   };
 
-  $.when($.ready).then(function() {
-    var hash = $.cookie("hash");
-    if (!hash) {
-      hash = "#/welcome";
-    }
-    vm.navigateTo(hash);
-  });
+  // $.when($.ready).then(function() {
+  //   var hash = $.cookie("hash");
+  //   if (!hash) {
+  //     hash = "#/welcome";
+  //   }
+  //   vm.navigateTo(hash);
+  // });
 })(jQuery);

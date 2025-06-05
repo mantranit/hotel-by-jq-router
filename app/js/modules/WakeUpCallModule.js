@@ -9,23 +9,23 @@ $(function() {
         return;
       }
       const keyCode = event.keyCode || event.which;
-      if (keyCode === window.keyboard.RIGHT) {
-      } else if (keyCode === window.keyboard.LEFT) {
-      } else if (keyCode === window.keyboard.TOP) {
+      if (window.keyboard.checkKeyCode("RIGHT", keyCode)) {
+      } else if (window.keyboard.checkKeyCode("LEFT", keyCode)) {
+      } else if (window.keyboard.checkKeyCode("TOP", keyCode)) {
         window.wakeUpCallKeyboard.cursor = Math.max(
           window.wakeUpCallKeyboard.cursor - 1,
           0
         );
-      } else if (keyCode === window.keyboard.BOTTOM) {
+      } else if (window.keyboard.checkKeyCode("BOTTOM", keyCode)) {
         window.wakeUpCallKeyboard.cursor = Math.min(
           window.wakeUpCallKeyboard.cursor + 1,
           window.wakeUpCallTrack.length
         );
-      } else if (keyCode === window.keyboard.ENTER) {
+      } else if (window.keyboard.checkKeyCode("ENTER", keyCode)) {
         if (window.wakeUpCallKeyboard.cursor < window.wakeUpCallTrack.length) {
           window.wakeUpCallKeyboard.selected = window.wakeUpCallKeyboard.cursor;
         }
-      } else if (window.keyboard.BACK.includes(keyCode)) {
+      } else if (window.keyboard.checkKeyCode("BACK", keyCode)) {
         vm.navigateTo("#/");
       }
 

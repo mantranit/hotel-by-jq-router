@@ -8,24 +8,24 @@ $(function() {
         return;
       }
       const keyCode = event.keyCode || event.which;
-      if (keyCode === window.keyboard.TOP) {
+      if (window.keyboard.checkKeyCode("TOP", keyCode)) {
         window.settingsKeyboard.cursor = Math.max(
           window.settingsKeyboard.cursor - 1,
           0
         );
-      } else if (keyCode === window.keyboard.BOTTOM) {
+      } else if (window.keyboard.checkKeyCode("BOTTOM", keyCode)) {
         window.settingsKeyboard.cursor = Math.min(
           window.settingsKeyboard.cursor + 1,
           1
         );
-      } else if (keyCode === window.keyboard.ENTER) {
+      } else if (window.keyboard.checkKeyCode("ENTER", keyCode)) {
         if (window.settingsKeyboard.cursor === 0) {
           vm.navigateTo("#/settings/language");
         }
         if (window.settingsKeyboard.cursor === 1) {
           vm.navigateTo("#/settings/parental-lock");
         }
-      } else if (window.keyboard.BACK.includes(keyCode)) {
+      } else if (window.keyboard.checkKeyCode("BACK", keyCode)) {
         vm.navigateTo("#/");
       }
 

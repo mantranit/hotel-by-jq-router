@@ -10,7 +10,7 @@ $(function() {
         return;
       }
       const keyCode = event.keyCode || event.which;
-      if (keyCode === window.keyboard.RIGHT) {
+      if (window.keyboard.checkKeyCode("RIGHT", keyCode)) {
         var nextCursorX = Math.min(
           window.categoryKeyboard.cursorX + 1,
           this.itemInRow - 1
@@ -22,17 +22,17 @@ $(function() {
         ) {
           window.categoryKeyboard.cursorX = nextCursorX;
         }
-      } else if (keyCode === window.keyboard.LEFT) {
+      } else if (window.keyboard.checkKeyCode("LEFT", keyCode)) {
         window.categoryKeyboard.cursorX = Math.max(
           window.categoryKeyboard.cursorX - 1,
           0
         );
-      } else if (keyCode === window.keyboard.TOP) {
+      } else if (window.keyboard.checkKeyCode("TOP", keyCode)) {
         window.categoryKeyboard.cursorY = Math.max(
           window.categoryKeyboard.cursorY - 1,
           0
         );
-      } else if (keyCode === window.keyboard.BOTTOM) {
+      } else if (window.keyboard.checkKeyCode("BOTTOM", keyCode)) {
         var nextCursorY = Math.min(
           window.categoryKeyboard.cursorY + 1,
           Math.ceil(window.currentCategory.length / this.itemInRow) - 1
@@ -54,9 +54,9 @@ $(function() {
             window.categoryKeyboard.cursorY = nextCursorY;
           }
         }
-      } else if (keyCode === window.keyboard.ENTER) {
+      } else if (window.keyboard.checkKeyCode("ENTER", keyCode)) {
         // go to subcategory
-      } else if (window.keyboard.BACK.includes(keyCode)) {
+      } else if (window.keyboard.checkKeyCode("BACK", keyCode)) {
         vm.navigateTo("#/");
       }
 

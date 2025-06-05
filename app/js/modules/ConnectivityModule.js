@@ -10,7 +10,7 @@ $(function() {
       }
       var itemInARow = 2;
       const keyCode = event.keyCode || event.which;
-      if (keyCode === window.keyboard.RIGHT) {
+      if (window.keyboard.checkKeyCode("RIGHT", keyCode)) {
         var nextCursorX = Math.min(
           window.connectivityKeyboard.cursorX + 1,
           itemInARow - 1
@@ -22,17 +22,17 @@ $(function() {
         ) {
           window.connectivityKeyboard.cursorX = nextCursorX;
         }
-      } else if (keyCode === window.keyboard.LEFT) {
+      } else if (window.keyboard.checkKeyCode("LEFT", keyCode)) {
         window.connectivityKeyboard.cursorX = Math.max(
           window.connectivityKeyboard.cursorX - 1,
           0
         );
-      } else if (keyCode === window.keyboard.TOP) {
+      } else if (window.keyboard.checkKeyCode("TOP", keyCode)) {
         window.connectivityKeyboard.cursorY = Math.max(
           window.connectivityKeyboard.cursorY - 1,
           0
         );
-      } else if (keyCode === window.keyboard.BOTTOM) {
+      } else if (window.keyboard.checkKeyCode("BOTTOM", keyCode)) {
         var nextCursorY = Math.min(
           window.connectivityKeyboard.cursorY + 1,
           Math.ceil(window.sourceList.length / itemInARow) - 1
@@ -54,7 +54,7 @@ $(function() {
             window.connectivityKeyboard.cursorY = nextCursorY;
           }
         }
-      } else if (keyCode === window.keyboard.ENTER) {
+      } else if (window.keyboard.checkKeyCode("ENTER", keyCode)) {
         $("#connectivityAlert .site-modal-title").text(
           i18njs.get(
             window.sourceList[
@@ -72,7 +72,7 @@ $(function() {
           )
         );
         $("#connectivityAlert").toggle();
-      } else if (window.keyboard.BACK.includes(keyCode)) {
+      } else if (window.keyboard.checkKeyCode("BACK", keyCode)) {
         if ($("#connectivityAlert").is(":visible")) {
           $("#connectivityAlert").toggle();
         } else {

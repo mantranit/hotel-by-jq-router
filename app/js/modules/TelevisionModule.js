@@ -17,17 +17,17 @@ $(function() {
       }
       const keyCode = event.keyCode || event.which;
       if ($("#filterChannels").is(":visible")) {
-        if (keyCode === window.keyboard.TOP) {
+        if (window.keyboard.checkKeyCode("TOP", keyCode)) {
           window.televisionFilterKeyboard.cursor = Math.max(
             window.televisionFilterKeyboard.cursor - 1,
             0
           );
-        } else if (keyCode === window.keyboard.BOTTOM) {
+        } else if (window.keyboard.checkKeyCode("BOTTOM", keyCode)) {
           window.televisionFilterKeyboard.cursor = Math.min(
             window.televisionFilterKeyboard.cursor + 1,
             window.channelCategories.length
           );
-        } else if (keyCode === window.keyboard.ENTER) {
+        } else if (window.keyboard.checkKeyCode("ENTER", keyCode)) {
           var selectedItem =
             window.channelCategories[
               window.televisionFilterKeyboard.cursor - 1
@@ -51,8 +51,8 @@ $(function() {
           window.televisionKeyboard.cursorY = 0;
           this.renderCursor();
         } else if (
-          window.keyboard.BACK.includes(keyCode) ||
-          window.keyboard.BUTTON_YELLOW.includes(keyCode)
+          window.keyboard.checkKeyCode("BACK", keyCode) ||
+          window.keyboard.checkKeyCode("BUTTON_YELLOW", keyCode)
         ) {
           $("#filterChannels").toggle();
           $("#televisionPlayer").toggle();
@@ -63,7 +63,7 @@ $(function() {
         return;
       }
       // Hide filter channels
-      if (keyCode === window.keyboard.RIGHT) {
+      if (window.keyboard.checkKeyCode("RIGHT", keyCode)) {
         if (window.televisionKeyboard.cursorX === this.itemInRow - 1) {
           if (
             window.filteredChannels[
@@ -86,7 +86,7 @@ $(function() {
             window.televisionKeyboard.cursorX = nextCursorX;
           }
         }
-      } else if (keyCode === window.keyboard.LEFT) {
+      } else if (window.keyboard.checkKeyCode("LEFT", keyCode)) {
         if (window.televisionKeyboard.cursorX === 0) {
           if (
             window.filteredChannels[
@@ -104,12 +104,12 @@ $(function() {
             0
           );
         }
-      } else if (keyCode === window.keyboard.TOP) {
+      } else if (window.keyboard.checkKeyCode("TOP", keyCode)) {
         window.televisionKeyboard.cursorY = Math.max(
           window.televisionKeyboard.cursorY - 1,
           0
         );
-      } else if (keyCode === window.keyboard.BOTTOM) {
+      } else if (window.keyboard.checkKeyCode("BOTTOM", keyCode)) {
         var nextCursorY = Math.min(
           window.televisionKeyboard.cursorY + 1,
           Math.ceil(window.filteredChannels.length / this.itemInRow) - 1
@@ -123,7 +123,7 @@ $(function() {
             (window.filteredChannels.length % this.itemInRow) - 1;
         }
         window.televisionKeyboard.cursorY = nextCursorY;
-      } else if (keyCode === window.keyboard.ENTER) {
+      } else if (window.keyboard.checkKeyCode("ENTER", keyCode)) {
         var activeChannel =
           window.filteredChannels[
             window.televisionKeyboard.cursorX +
@@ -134,7 +134,7 @@ $(function() {
             .removeClass("not-fullscreen")
             .addClass("fullscreen");
         }
-      } else if (window.keyboard.BACK.includes(keyCode)) {
+      } else if (window.keyboard.checkKeyCode("BACK", keyCode)) {
         if ($("#televisionPlayer").hasClass("fullscreen")) {
           $("#televisionPlayer")
             .removeClass("fullscreen")

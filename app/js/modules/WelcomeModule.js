@@ -5,7 +5,7 @@ $(function() {
         return;
       }
       const keyCode = event.keyCode || event.which;
-      if (keyCode === keyboard.ENTER) {
+      if (window.keyboard.checkKeyCode("ENTER", keyCode)) {
         vm.navigateTo("#/");
       }
     },

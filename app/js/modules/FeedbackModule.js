@@ -9,7 +9,7 @@ $(function() {
         return;
       }
       const keyCode = event.keyCode || event.which;
-      if (keyCode === window.keyboard.RIGHT) {
+      if (window.keyboard.checkKeyCode("RIGHT", keyCode)) {
         if (
           window.feedbackList[window.feedbackKeyboard.cursor].type === "star"
         ) {
@@ -17,7 +17,7 @@ $(function() {
             item.selected = Math.min(5, item.selected + 1);
           });
         }
-      } else if (keyCode === window.keyboard.LEFT) {
+      } else if (window.keyboard.checkKeyCode("LEFT", keyCode)) {
         if (
           window.feedbackList[window.feedbackKeyboard.cursor].type === "star"
         ) {
@@ -25,7 +25,7 @@ $(function() {
             item.selected = Math.max(1, item.selected - 1);
           });
         }
-      } else if (keyCode === window.keyboard.TOP) {
+      } else if (window.keyboard.checkKeyCode("TOP", keyCode)) {
         if (
           window.feedbackList[window.feedbackKeyboard.cursor] &&
           window.feedbackList[window.feedbackKeyboard.cursor].type === "select"
@@ -45,7 +45,7 @@ $(function() {
             0
           );
         }
-      } else if (keyCode === window.keyboard.BOTTOM) {
+      } else if (window.keyboard.checkKeyCode("BOTTOM", keyCode)) {
         if (
           window.feedbackList[window.feedbackKeyboard.cursor] &&
           window.feedbackList[window.feedbackKeyboard.cursor].type === "select"
@@ -68,7 +68,7 @@ $(function() {
             window.feedbackList.length
           );
         }
-      } else if (keyCode === window.keyboard.ENTER) {
+      } else if (window.keyboard.checkKeyCode("ENTER", keyCode)) {
         if ($("#feedbackAlert").is(":visible")) {
           window.feedbackList.forEach(function(item, index) {
             item.selected = 1;
@@ -104,7 +104,7 @@ $(function() {
           window.feedbackKeyboard.cursor + 1,
           window.feedbackList.length
         );
-      } else if (window.keyboard.BACK.includes(keyCode)) {
+      } else if (window.keyboard.checkKeyCode("BACK", keyCode)) {
         vm.navigateTo("#/");
       }
 

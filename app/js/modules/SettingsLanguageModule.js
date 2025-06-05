@@ -8,22 +8,22 @@ $(function() {
         return;
       }
       const keyCode = event.keyCode || event.which;
-      if (keyCode === window.keyboard.TOP) {
+      if (window.keyboard.checkKeyCode("TOP", keyCode)) {
         window.settingsLanguageKeyboard.cursor = Math.max(
           window.settingsLanguageKeyboard.cursor - 1,
           0
         );
-      } else if (keyCode === window.keyboard.BOTTOM) {
+      } else if (window.keyboard.checkKeyCode("BOTTOM", keyCode)) {
         window.settingsLanguageKeyboard.cursor = Math.min(
           window.settingsLanguageKeyboard.cursor + 1,
           window.siteLanguages.length - 1
         );
-      } else if (keyCode === window.keyboard.ENTER) {
+      } else if (window.keyboard.checkKeyCode("ENTER", keyCode)) {
         i18njs.setLang(
           window.siteLanguages[window.settingsLanguageKeyboard.cursor].code
         );
         vm.navigateTo("#/settings");
-      } else if (window.keyboard.BACK.includes(keyCode)) {
+      } else if (window.keyboard.checkKeyCode("BACK", keyCode)) {
         vm.navigateTo("#/settings");
       }
 
