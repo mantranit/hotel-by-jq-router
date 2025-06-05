@@ -24,9 +24,7 @@ $(function() {
     renderPage: function() {
       $("#app").html(`<div id="welcomePage" class="page welcome-page">
   <div class="video-background">
-    <div class="flowplayer-embed-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; width:100%;">
-      <video muted autoplay loop src="http://103.153.72.195:8080/video/HITEC_Scandic_Video_No_Sound.mp4" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></video>
-    </div>
+    <video width="100%" preload="auto" playsinline autoplay muted loop src="http://103.153.72.195:8080/video/HITEC_Scandic_Video_No_Sound.mp4"></video>
   </div>
   <div class="welcome-wrapper">
     <h1 id="welcomeTitle">DEAR</h1>
